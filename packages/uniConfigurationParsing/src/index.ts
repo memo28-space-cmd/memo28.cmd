@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 09:35:53
- * @LastEditTime: 2023-12-21 14:44:46
+ * @LastEditTime: 2023-12-22 00:28:19
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/index.ts
  */
@@ -18,22 +18,22 @@ const h: UniConfigurationParsingOptions = {
 
 const finalConfig = new ParsingConfiguration(h)
     .addAndroidPermissions((config) => {
-        config.addPositioningSystem({
-            platform: ['android']
-        }).addScottMap({
-            name: 'as',
+        config.androidPermissionsConfigPositioning.addBaiduPosition({
             appkey_android: '12',
-            appkey_ios: 'q3',
+            appkey_ios: '123',
             __platform__: ['android']
+        }).addPositioningSystem({
+            platform: ['android']
         })
-            .addBaiduMap({
-                __platform__: ['android'],
-                appkey_android: '',
-                appkey_ios: ''
-            })
+
+        config.androidPermissionsConfigMap.addGaodeMap({
+            appkey_android: '12',
+            appkey_ios: '123',
+            name: '123'
+        })
     })
     .completeDefault()
     .done()
 
-console.log(finalConfig['app-plus']?.distribute?.sdkConfigs)
+console.log(finalConfig['app-plus']?.distribute?.android)
 

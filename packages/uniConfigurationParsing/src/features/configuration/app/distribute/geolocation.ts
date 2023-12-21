@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 13:53:31
- * @LastEditTime: 2023-12-21 14:38:24
+ * @LastEditTime: 2023-12-22 00:17:41
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/app/distribute/geolocation.ts
  */
@@ -84,4 +84,9 @@ export interface baiduMap {
     __platform__: ("ios" | "android")[]
     appkey_android: string
     appkey_ios: string
+}
+
+export interface googleMap {
+    APIKey_ios: string
+    APIKey_android: string
 }

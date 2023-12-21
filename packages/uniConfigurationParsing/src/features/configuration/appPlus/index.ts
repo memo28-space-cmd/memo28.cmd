@@ -1,11 +1,11 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 13:01:16
- * @LastEditTime: 2023-12-21 14:35:46
+ * @LastEditTime: 2023-12-22 00:18:03
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/appPlus/index.ts
  */
-import { geolocation } from '../app/distribute'
+import { amap, baiduMap, geolocation, googleMap } from '../app/distribute'
 import { AndroidDistribute } from './android.distribute'
 import { IosDistribute } from './ios.distribute'
 
@@ -77,6 +77,10 @@ export interface AppPlus {
         ios: IosDistribute,
         sdkConfigs: Partial<{
             geolocation: Partial<geolocation>
+            maps: { baidu: Omit<baiduMap, '__platform__'> } |
+            { amap: Omit<amap, '__platform__'> } | {
+                google: googleMap
+            }
         }>,
         orientation: {}
     }>
