@@ -1,0 +1,92 @@
+/*
+ * @Author: @memo28.repo
+ * @Date: 2023-12-21 13:01:16
+ * @LastEditTime: 2023-12-21 14:35:46
+ * @Description: 
+ * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/appPlus/index.ts
+ */
+import { geolocation } from '../app/distribute'
+import { AndroidDistribute } from './android.distribute'
+import { IosDistribute } from './ios.distribute'
+
+/**
+ * 
+ * 
+ * @see https://uniapp.dcloud.net.cn/collocation/manifest.html#app-plus
+ * 
+ * @public
+ * 
+ */
+export interface AppPlus {
+    /**
+     * 
+     * App 启动界面信息
+     * 
+     * @public
+     */
+    splashscreen: {}
+
+    /**
+     * 
+     * 重力感应、横竖屏配置
+     * 
+     * 
+     * 可取值："portrait-primary"：竖屏正方向；"portrait-secondary"：竖屏反方向；"landscape-primary"：横屏正方向；"landscape-secondary"：横屏反方向。
+     * 
+     * 
+     * @public
+     */
+    screenOrientation: ('portrait-primary' | 'portrait-secondary' | 'landscape-primary' | 'landscape-secondary')[]
+    /**
+     * 
+     * 模块配置
+     * 
+     * 模块选择是为了控制App的包体积，不需要的模块可以在打包时剔除。
+     * 
+     * @see https://uniapp.dcloud.net.cn/collocation/manifest.html#modules
+     * 
+     * @public
+     */
+    modules: Partial<{
+        Bluetooth: {},
+        Contacts: {},
+        Fingerprint: {},
+        iBeacon: {},
+        LivePusher: {},
+        Maps: {},
+        Messaging: {},
+        OAuth: {},
+        Payment: {},
+        Push: {},
+        Share: {},
+        Speech: {},
+        SQLite: {},
+        Statistic: {},
+        VideoPlayer: {},
+        Geolocation: {}
+    }>
+
+    /**
+     * 
+     * App 发布信息
+     * 
+     * @public
+     */
+    distribute: Partial<{
+        android: AndroidDistribute,
+        ios: IosDistribute,
+        sdkConfigs: Partial<{
+            geolocation: Partial<geolocation>
+        }>,
+        orientation: {}
+    }>
+    nvueCompiler: string
+    nvueStyleCompiler: string
+    renderer: string
+    nvueLaunchMode: string
+    nvue: {}
+    optimization: {}
+    runmode: string
+    uniStatistics: {}
+    webView: {}
+}
