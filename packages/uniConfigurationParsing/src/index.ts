@@ -1,12 +1,13 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 09:35:53
- * @LastEditTime: 2023-12-21 14:39:17
+ * @LastEditTime: 2023-12-21 14:44:46
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/index.ts
  */
 import { UniConfigurationParsingOptions } from './features/configuration/index';
 import { ParsingConfiguration } from './features/parsingConfiguration/index';
+export { ParsingConfiguration, UniConfigurationParsingOptions };
 
 
 const h: UniConfigurationParsingOptions = {

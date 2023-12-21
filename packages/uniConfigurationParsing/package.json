@@ -8,7 +8,7 @@
     "build:cjs": "tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true",
     "build:es": "tsc --module es6 --rootDir ./src --outDir ./dist --experimentalDecorators true",
     "build": "pnpm build:cjs && pnpm build:es",
-    "build:md": "pnpm build && api-extractor run --local --verbose && sh mv.sh",
+    "build:md": "pnpm build && api-extractor run --local --verbose",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "links": "pnpm link --global"
