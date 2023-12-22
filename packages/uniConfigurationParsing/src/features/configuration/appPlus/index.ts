@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 13:01:16
- * @LastEditTime: 2023-12-22 17:01:54
+ * @LastEditTime: 2023-12-22 22:50:03
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/appPlus/index.ts
  */
@@ -65,7 +65,11 @@ export interface AppPlus {
         SQLite: {},
         Statistic: {},
         VideoPlayer: {},
-        Geolocation: {}
+        Geolocation: {},
+        Record: {},
+        SecureNetwork: {},
+        UIWebview: {},
+        "Webview-x5": {}
     }>
 
     /**

@@ -1,12 +1,13 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 23:21:48
- * @LastEditTime: 2023-12-22 17:12:08
+ * @LastEditTime: 2023-12-22 22:50:16
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.ts
  */
 
 import defaultsDeep from 'lodash.defaultsdeep';
+import { UniConfigurationParsingOptions } from '../../../configuration';
 import { IFLYTEKSpeechRecognition, alipay, baiduSpeechRecognition, bluetooth, contact, facialRecognitionVerify, fingerprint, friendlyLeagueStatistics, iBeacon, messaging, qqOAuth, qqShare, scottMaps, uniPush, userGeolocation, weiBoShare, wxOAuth, wxPay, wxShare } from '../../../configuration/app/distribute/index';
 import { ManiFest } from '../../comon/getMainfast';
 import { AndroidPermissionsConfigMap } from './android.permissions.config.map';
@@ -76,6 +77,99 @@ export class AndroidPermissionsConfig {
 
     addContact() {
         this.permissions.push(...contact)
+        return this
+    }
+
+    addWebviewX5() {
+        const h: Partial<UniConfigurationParsingOptions> = {
+            "app-plus": {
+                modules: {
+                    'Webview-x5': {}
+                }
+            }
+        }
+        this.maniFest.setMainFast(defaultsDeep(this.maniFest.getMainFast(), h))
+        return this
+    }
+
+    addUIWebview() {
+        const h: Partial<UniConfigurationParsingOptions> = {
+            "app-plus": {
+                modules: {
+                    UIWebview: {}
+                }
+            }
+        }
+        this.maniFest.setMainFast(defaultsDeep(this.maniFest.getMainFast(), h))
+        return this
+    }
+
+    addVideoPlayer() {
+        const h: Partial<UniConfigurationParsingOptions> = {
+            "app-plus": {
+                modules: {
+                    VideoPlayer: {}
+                }
+            }
+        }
+        this.maniFest.setMainFast(defaultsDeep(this.maniFest.getMainFast(), h))
+
+        return this
+    }
+
+
+    /**
+     * 
+     * 新增 SQLite 模块
+     * 
+     * @public
+     * 
+     */
+    addSQLite() {
+        const h: Partial<UniConfigurationParsingOptions> = {
+            "app-plus": {
+                modules: {
+                    SQLite: {}
+                }
+            }
+        }
+        this.maniFest.setMainFast(defaultsDeep(this.maniFest.getMainFast(), h))
+        return this
+    }
+    /**
+     * 
+     * uni 云端一体安全网络
+     * 
+     * @public
+     * 
+     */
+    addSecureNetwork() {
+        const h: Partial<UniConfigurationParsingOptions> = {
+            "app-plus": {
+                modules: {
+                    SecureNetwork: {}
+                }
+            }
+        }
+        this.maniFest.setMainFast(defaultsDeep(this.maniFest.getMainFast(), h))
+        return this
+    }
+
+    /**
+     * 
+     * 新增录音模块
+     * 
+     * @public
+     */
+    addRecord() {
+        const h: Partial<UniConfigurationParsingOptions> = {
+            "app-plus": {
+                modules: {
+                    Record: {}
+                }
+            }
+        }
+        this.maniFest.setMainFast(defaultsDeep(this.maniFest.getMainFast(), h))
         return this
     }
 
