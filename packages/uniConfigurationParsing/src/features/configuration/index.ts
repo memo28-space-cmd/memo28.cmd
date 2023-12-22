@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 09:37:21
- * @LastEditTime: 2023-12-21 13:28:33
+ * @LastEditTime: 2023-12-22 17:14:07
  * @Description: 配置
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/index.ts
  */
@@ -17,6 +17,7 @@ import { eachSideGeneralConfiguration } from './common/generalConfiguration'
  * 
  */
 export interface UniConfigurationParsingOptions {
+    [key: string]: any
     vueVersion?: string
     /**
      * 

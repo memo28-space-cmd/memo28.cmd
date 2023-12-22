@@ -1,13 +1,14 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 13:53:31
- * @LastEditTime: 2023-12-22 00:17:41
+ * @LastEditTime: 2023-12-22 16:44:58
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/app/distribute/geolocation.ts
  */
 
 import { userConfigurationAlternativePath } from "../../common/generalConfiguration"
 
+export type __platform__ =  'ios' | 'android'
 
 
 /**

@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 23:21:48
- * @LastEditTime: 2023-12-22 16:32:18
+ * @LastEditTime: 2023-12-22 17:12:08
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.ts
  */
@@ -11,6 +11,7 @@ import { IFLYTEKSpeechRecognition, alipay, baiduSpeechRecognition, bluetooth, co
 import { ManiFest } from '../../comon/getMainfast';
 import { AndroidPermissionsConfigMap } from './android.permissions.config.map';
 import { AndroidPermissionsConfigOauth, userAndroidPermissionsConfigOauth } from './android.permissions.config.oauth';
+import { AndroidPermissionsConfigPay, userAndroidPermissionsConfigPay } from './android.permissions.config.pay';
 import { AndroidPermissionsConfigPositioning } from './android.permissions.config.positioning';
 
 /**
@@ -35,6 +36,8 @@ export class AndroidPermissionsConfig {
 
     public androidPermissionsConfigOauth: userAndroidPermissionsConfigOauth = new AndroidPermissionsConfigOauth()
 
+    public androidPermissionsConfigPay: userAndroidPermissionsConfigPay = new AndroidPermissionsConfigPay()
+
     /**
      * 
      * 
@@ -45,6 +48,7 @@ export class AndroidPermissionsConfig {
     public androidPermissionsConfigMap: Omit<AndroidPermissionsConfigMap, 'getPermissions' | 'setPermissions' | 'getConfig' | 'permissions'> = new AndroidPermissionsConfigMap()
 
     constructor() {
+        (this.androidPermissionsConfigPay as AndroidPermissionsConfigPay).permissions.setPermissions(this.permissions);
         (this.androidPermissionsConfigOauth as AndroidPermissionsConfigOauth).permissions.setPermissions(this.permissions);
         (this.androidPermissionsConfigPositioning as AndroidPermissionsConfigPositioning).permissions.setPermissions(this.permissions);
         (this.androidPermissionsConfigMap as AndroidPermissionsConfigMap).permissions.setPermissions(this.permissions)
@@ -56,7 +60,8 @@ export class AndroidPermissionsConfig {
         return defaultsDeep(this.maniFest.getMainFast(),
             (this.androidPermissionsConfigPositioning as AndroidPermissionsConfigPositioning).getConfig(),
             (this.androidPermissionsConfigMap as AndroidPermissionsConfigMap).getConfig(),
-            (this.androidPermissionsConfigOauth as AndroidPermissionsConfigOauth).getConfig()
+            (this.androidPermissionsConfigOauth as AndroidPermissionsConfigOauth).getConfig(),
+            (this.androidPermissionsConfigPay as AndroidPermissionsConfigPay).getConfig()
         )
     }
 
@@ -112,21 +117,10 @@ export class AndroidPermissionsConfig {
         return this
     }
 
-    addAliPay() {
-        this.permissions.push(...alipay)
-        return this
-    }
-
-    addWxPay() {
-        this.permissions.push(...wxPay)
-        return this
-    }
-
     addUniPush() {
         this.permissions.push(...uniPush)
         return this
     }
-
 
     addWxShare() {
         this.permissions.push(...wxShare)
