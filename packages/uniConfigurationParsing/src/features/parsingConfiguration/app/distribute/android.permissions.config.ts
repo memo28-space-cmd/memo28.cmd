@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 23:21:48
- * @LastEditTime: 2023-12-22 00:26:50
+ * @LastEditTime: 2023-12-22 15:51:55
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.ts
  */
@@ -93,86 +93,6 @@ export class AndroidPermissionsConfig {
         return this
     }
 
-    /**
-     * 
-     * 系统定位
-     * 
-     * @public
-     */
-    addPositioningSystem(opt: Omit<userGeolocation, 'configureAlternatePath'>) {
-        const userGeolocation = {
-            ...opt,
-            configureAlternatePath: {
-                "app-plus": {
-                    modules: {
-                        Geolocation: {}
-                    },
-                    distribute: {
-                        sdkConfigs: {
-                            geolocation: {
-                                system: {
-                                    "__platform__": opt.platform
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        this.maniFest.setMainFast(defaultsDeep(userGeolocation.configureAlternatePath, this.maniFest.getMainFast()))
-
-        return this
-    }
-
-
-    /**
-     * 
-     * 高德地图
-     * 
-     * @public
-     */
-    addScottMap(opt: amap) {
-        this.permissions.push(...scottMaps)
-        const config: Partial<UniConfigurationParsingOptions> = {
-            "app-plus": {
-                distribute: {
-                    sdkConfigs: {
-                        geolocation: {
-                            amap: opt
-                        }
-                    }
-                }
-            }
-        }
-        this.maniFest.setMainFast(defaultsDeep(this.maniFest.getMainFast(), config))
-        return this
-    }
-
-    /**
-     * 
-     * 百度地图
-     * @public
-     */
-
-    addBaiduMap(opt: baiduMap) {
-        this.permissions.push(...bdMaps)
-
-        const config: Partial<UniConfigurationParsingOptions> = {
-            "app-plus": {
-                distribute: {
-                    sdkConfigs: {
-                        geolocation: {
-                            baidu: opt
-                        }
-                    }
-                }
-            }
-        }
-
-        this.maniFest.setMainFast(defaultsDeep(this.maniFest.getMainFast(), config))
-        return this
-    }
 
 
     /**
