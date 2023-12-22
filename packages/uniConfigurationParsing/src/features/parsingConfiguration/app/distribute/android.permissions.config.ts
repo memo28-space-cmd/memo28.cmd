@@ -1,16 +1,16 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 23:21:48
- * @LastEditTime: 2023-12-22 15:51:55
+ * @LastEditTime: 2023-12-22 16:32:18
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.ts
  */
 
 import defaultsDeep from 'lodash.defaultsdeep';
-import { UniConfigurationParsingOptions } from '../../../configuration';
-import { IFLYTEKSpeechRecognition, alipay, amap, baiduMap, baiduSpeechRecognition, bdMaps, bluetooth, contact, facialRecognitionVerify, fingerprint, friendlyLeagueStatistics, iBeacon, messaging, qqOAuth, qqShare, scottMaps, uniPush, userGeolocation, weiBoShare, wxOAuth, wxPay, wxShare } from '../../../configuration/app/distribute/index';
+import { IFLYTEKSpeechRecognition, alipay, baiduSpeechRecognition, bluetooth, contact, facialRecognitionVerify, fingerprint, friendlyLeagueStatistics, iBeacon, messaging, qqOAuth, qqShare, scottMaps, uniPush, userGeolocation, weiBoShare, wxOAuth, wxPay, wxShare } from '../../../configuration/app/distribute/index';
 import { ManiFest } from '../../comon/getMainfast';
 import { AndroidPermissionsConfigMap } from './android.permissions.config.map';
+import { AndroidPermissionsConfigOauth, userAndroidPermissionsConfigOauth } from './android.permissions.config.oauth';
 import { AndroidPermissionsConfigPositioning } from './android.permissions.config.positioning';
 
 /**
@@ -31,7 +31,9 @@ export class AndroidPermissionsConfig {
      * @public
      * 
      */
-    public androidPermissionsConfigPositioning: Omit<AndroidPermissionsConfigPositioning, 'maniFest' | 'setPermissions' | 'getPermissions' | 'getConfig'> = new AndroidPermissionsConfigPositioning()
+    public androidPermissionsConfigPositioning: Omit<AndroidPermissionsConfigPositioning, 'maniFest' | 'setPermissions' | 'getPermissions' | 'getConfig' | 'permissions'> = new AndroidPermissionsConfigPositioning()
+
+    public androidPermissionsConfigOauth: userAndroidPermissionsConfigOauth = new AndroidPermissionsConfigOauth()
 
     /**
      * 
@@ -40,17 +42,22 @@ export class AndroidPermissionsConfig {
      * 
      * @public
      */
-    public androidPermissionsConfigMap: Omit<AndroidPermissionsConfigMap, 'getPermissions' | 'setPermissions' | 'getConfig'> = new AndroidPermissionsConfigMap()
+    public androidPermissionsConfigMap: Omit<AndroidPermissionsConfigMap, 'getPermissions' | 'setPermissions' | 'getConfig' | 'permissions'> = new AndroidPermissionsConfigMap()
 
     constructor() {
-        (this.androidPermissionsConfigPositioning as AndroidPermissionsConfigPositioning).setPermissions(this.permissions);
-        (this.androidPermissionsConfigMap as AndroidPermissionsConfigMap).setPermissions(this.permissions)
+        (this.androidPermissionsConfigOauth as AndroidPermissionsConfigOauth).permissions.setPermissions(this.permissions);
+        (this.androidPermissionsConfigPositioning as AndroidPermissionsConfigPositioning).permissions.setPermissions(this.permissions);
+        (this.androidPermissionsConfigMap as AndroidPermissionsConfigMap).permissions.setPermissions(this.permissions)
     }
 
     maniFest: ManiFest = new ManiFest()
 
     getManiFestMergeConfig() {
-        return defaultsDeep(this.maniFest.getMainFast(), (this.androidPermissionsConfigPositioning as AndroidPermissionsConfigPositioning).getConfig(), (this.androidPermissionsConfigMap as AndroidPermissionsConfigMap).getConfig())
+        return defaultsDeep(this.maniFest.getMainFast(),
+            (this.androidPermissionsConfigPositioning as AndroidPermissionsConfigPositioning).getConfig(),
+            (this.androidPermissionsConfigMap as AndroidPermissionsConfigMap).getConfig(),
+            (this.androidPermissionsConfigOauth as AndroidPermissionsConfigOauth).getConfig()
+        )
     }
 
     getPermissions() {
@@ -102,16 +109,6 @@ export class AndroidPermissionsConfig {
 
     addMessage() {
         this.permissions.push(...messaging)
-        return this
-    }
-
-    addWxOAuth() {
-        this.permissions.push(...wxOAuth)
-        return this
-    }
-
-    addQQOAuth() {
-        this.permissions.push(...qqOAuth)
         return this
     }
 

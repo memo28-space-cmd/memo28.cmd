@@ -1,16 +1,17 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 23:46:09
- * @LastEditTime: 2023-12-22 00:10:55
+ * @LastEditTime: 2023-12-22 15:57:33
  * @Description:  定位相关 (系统，高德，百度)
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.positioning.ts
  */
 import defaultsDeep from 'lodash.defaultsdeep';
 import { UniConfigurationParsingOptions } from '../../../configuration';
 import { amap, baiduMap, bdMaps, scottMaps, userGeolocation } from '../../../configuration/app/distribute';
+import { Permissions } from './permissions';
 
 export class AndroidPermissionsConfigPositioning {
-    private permissions: string[] = [];
+    public permissions: Permissions = new Permissions();
 
 
     private config: Partial<UniConfigurationParsingOptions> = {}
@@ -48,7 +49,7 @@ export class AndroidPermissionsConfigPositioning {
      * @public
      */
     addGaodePositioning(opt: amap) {
-        this.permissions.push(...scottMaps)
+        this.permissions.push(scottMaps)
         const config: Partial<UniConfigurationParsingOptions> = {
             "app-plus": {
                 distribute: {
@@ -66,7 +67,7 @@ export class AndroidPermissionsConfigPositioning {
     }
 
     addBaiduPosition(opt: baiduMap) {
-        this.permissions.push(...bdMaps)
+        this.permissions.push(bdMaps)
 
         const config: Partial<UniConfigurationParsingOptions> = {
             "app-plus": {
@@ -87,28 +88,5 @@ export class AndroidPermissionsConfigPositioning {
     getConfig() {
         return this.config
     }
-
-    /**
-     * 
-     * 获取一个数组的引用
-     * 
-     * @public
-     */
-    setPermissions(permissions: string[]) {
-        this.permissions = permissions
-        return this
-    }
-
-    /**
-     * 
-     * 返回权限数组
-     * 
-     * @public
-     * 
-     */
-    getPermissions() {
-        return this.permissions
-    }
-
 }
 

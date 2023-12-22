@@ -1,11 +1,12 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 13:01:16
- * @LastEditTime: 2023-12-22 00:18:03
+ * @LastEditTime: 2023-12-22 16:26:47
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/appPlus/index.ts
  */
 import { amap, baiduMap, geolocation, googleMap } from '../app/distribute'
+import { faceBookOAuth, googleOAuth, qqOAuth, sinaOAuth, wxOAuth } from '../app/distribute/oauth'
 import { AndroidDistribute } from './android.distribute'
 import { IosDistribute } from './ios.distribute'
 
@@ -81,6 +82,16 @@ export interface AppPlus {
             { amap: Omit<amap, '__platform__'> } | {
                 google: googleMap
             }
+            oauth: Partial<{
+                univerify: {},
+                apple: {},
+                weixin: Partial<wxOAuth>,
+                qq: Partial<qqOAuth>,
+                sina: Partial<sinaOAuth>
+                google: Partial<googleOAuth>,
+                facebook: Partial<faceBookOAuth>
+
+            }>
         }>,
         orientation: {}
     }>

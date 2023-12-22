@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 09:35:53
- * @LastEditTime: 2023-12-22 00:28:19
+ * @LastEditTime: 2023-12-22 16:30:26
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/index.ts
  */
@@ -18,6 +18,7 @@ const h: UniConfigurationParsingOptions = {
 
 const finalConfig = new ParsingConfiguration(h)
     .addAndroidPermissions((config) => {
+        config.androidPermissionsConfigOauth.addAppleLogin()
         config.androidPermissionsConfigPositioning.addBaiduPosition({
             appkey_android: '12',
             appkey_ios: '123',
@@ -35,5 +36,5 @@ const finalConfig = new ParsingConfiguration(h)
     .completeDefault()
     .done()
 
-console.log(finalConfig['app-plus']?.distribute?.android)
+console.log(finalConfig['app-plus'])
 
