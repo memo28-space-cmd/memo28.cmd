@@ -1,10 +1,11 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-22 15:55:25
- * @LastEditTime: 2023-12-22 15:57:03
+ * @LastEditTime: 2023-12-23 14:18:41
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/permissions.ts
  */
+
 
 
 export class Permissions {

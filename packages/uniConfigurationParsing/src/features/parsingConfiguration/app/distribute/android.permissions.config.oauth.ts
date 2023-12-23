@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-22 16:00:33
- * @LastEditTime: 2023-12-22 16:33:47
+ * @LastEditTime: 2023-12-23 14:30:10
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.oauth.ts
  */
@@ -9,12 +9,13 @@ import defaultsDeep from 'lodash.defaultsdeep';
 import { qqOAuth as qqOAuthPermissions, wxOAuth as wxOAuthPermissions } from '../../../configuration/app/distribute';
 import { faceBookOAuth, googleOAuth, qqOAuth, sinaOAuth, wxOAuth } from '../../../configuration/app/distribute/oauth';
 import { UniConfigurationParsingOptions } from '../../../configuration/index';
+import { AndroidPermissionsConfigImpl, androidPermissionsConfigImplDoNotExportToUsers } from './android.permissions.config.impl';
 import { Permissions } from './permissions';
 
 
-export type userAndroidPermissionsConfigOauth = Omit<AndroidPermissionsConfigOauth, '' | 'permissions' | 'getConfig'>
+export type userAndroidPermissionsConfigOauth = Omit<AndroidPermissionsConfigOauth, androidPermissionsConfigImplDoNotExportToUsers>
 
-export class AndroidPermissionsConfigOauth {
+export class AndroidPermissionsConfigOauth implements AndroidPermissionsConfigImpl {
     permissions: Permissions = new Permissions()
     private config: Partial<UniConfigurationParsingOptions> = {}
 

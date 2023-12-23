@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 23:21:48
- * @LastEditTime: 2023-12-22 22:50:16
+ * @LastEditTime: 2023-12-23 14:40:57
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.ts
  */
@@ -10,10 +10,13 @@ import defaultsDeep from 'lodash.defaultsdeep';
 import { UniConfigurationParsingOptions } from '../../../configuration';
 import { IFLYTEKSpeechRecognition, alipay, baiduSpeechRecognition, bluetooth, contact, facialRecognitionVerify, fingerprint, friendlyLeagueStatistics, iBeacon, messaging, qqOAuth, qqShare, scottMaps, uniPush, userGeolocation, weiBoShare, wxOAuth, wxPay, wxShare } from '../../../configuration/app/distribute/index';
 import { ManiFest } from '../../comon/getMainfast';
-import { AndroidPermissionsConfigMap } from './android.permissions.config.map';
+import { AndroidPermissionsConfigHelper } from './android.permissions.config.helper';
+import { AndroidPermissionsConfigImpl } from './android.permissions.config.impl';
+import { AndroidPermissionsConfigMap, userAndroidPermissionsConfigMap } from './android.permissions.config.map';
 import { AndroidPermissionsConfigOauth, userAndroidPermissionsConfigOauth } from './android.permissions.config.oauth';
 import { AndroidPermissionsConfigPay, userAndroidPermissionsConfigPay } from './android.permissions.config.pay';
-import { AndroidPermissionsConfigPositioning } from './android.permissions.config.positioning';
+import { AndroidPermissionsConfigPositioning, userAndroidPermissionsConfigPositioning } from './android.permissions.config.positioning';
+import { AndroidPermissionsConfigShare, userAndroidPermissionsConfigShare } from './android.permissions.config.share';
 
 /**
  * 
@@ -22,9 +25,8 @@ import { AndroidPermissionsConfigPositioning } from './android.permissions.confi
  * @public
  * 
  */
-export class AndroidPermissionsConfig {
+export class AndroidPermissionsConfig extends AndroidPermissionsConfigHelper {
 
-    private permissions: string[] = [];
 
     /**
      * 
@@ -33,7 +35,9 @@ export class AndroidPermissionsConfig {
      * @public
      * 
      */
-    public androidPermissionsConfigPositioning: Omit<AndroidPermissionsConfigPositioning, 'maniFest' | 'setPermissions' | 'getPermissions' | 'getConfig' | 'permissions'> = new AndroidPermissionsConfigPositioning()
+    public androidPermissionsConfigPositioning: userAndroidPermissionsConfigPositioning = new AndroidPermissionsConfigPositioning()
+
+    public androidPermissionsConfigShare: userAndroidPermissionsConfigShare = new AndroidPermissionsConfigShare()
 
     public androidPermissionsConfigOauth: userAndroidPermissionsConfigOauth = new AndroidPermissionsConfigOauth()
 
@@ -46,37 +50,39 @@ export class AndroidPermissionsConfig {
      * 
      * @public
      */
-    public androidPermissionsConfigMap: Omit<AndroidPermissionsConfigMap, 'getPermissions' | 'setPermissions' | 'getConfig' | 'permissions'> = new AndroidPermissionsConfigMap()
+    public androidPermissionsConfigMap: userAndroidPermissionsConfigMap = new AndroidPermissionsConfigMap()
 
     constructor() {
-        (this.androidPermissionsConfigPay as AndroidPermissionsConfigPay).permissions.setPermissions(this.permissions);
-        (this.androidPermissionsConfigOauth as AndroidPermissionsConfigOauth).permissions.setPermissions(this.permissions);
-        (this.androidPermissionsConfigPositioning as AndroidPermissionsConfigPositioning).permissions.setPermissions(this.permissions);
-        (this.androidPermissionsConfigMap as AndroidPermissionsConfigMap).permissions.setPermissions(this.permissions)
+        super()
+        this.getCollectAndroidPermissionsConfigImpl([
+            this.androidPermissionsConfigPay as unknown as AndroidPermissionsConfigImpl,
+            this.androidPermissionsConfigMap as unknown as AndroidPermissionsConfigImpl,
+            this.androidPermissionsConfigOauth as unknown as AndroidPermissionsConfigImpl,
+            this.androidPermissionsConfigPositioning as unknown as AndroidPermissionsConfigImpl,
+            this.androidPermissionsConfigShare as unknown as AndroidPermissionsConfigImpl,
+        ])
+        this.getReferencPermissions()
     }
 
     maniFest: ManiFest = new ManiFest()
 
     getManiFestMergeConfig() {
         return defaultsDeep(this.maniFest.getMainFast(),
-            (this.androidPermissionsConfigPositioning as AndroidPermissionsConfigPositioning).getConfig(),
-            (this.androidPermissionsConfigMap as AndroidPermissionsConfigMap).getConfig(),
-            (this.androidPermissionsConfigOauth as AndroidPermissionsConfigOauth).getConfig(),
-            (this.androidPermissionsConfigPay as AndroidPermissionsConfigPay).getConfig()
+            this.getCollectConfig()
         )
     }
 
     getPermissions() {
-        return this.permissions
+        return this.permissions.getPermissions()
     }
 
     addBluetooth(): this {
-        this.permissions.push(...bluetooth)
+        this.permissions.push(bluetooth)
         return this
     }
 
     addContact() {
-        this.permissions.push(...contact)
+        this.permissions.push(contact)
         return this
     }
 
@@ -180,7 +186,7 @@ export class AndroidPermissionsConfig {
      * @public
      */
     addFingerprint() {
-        this.permissions.push(...fingerprint)
+        this.permissions.push(fingerprint)
         return this
     }
 
@@ -190,12 +196,12 @@ export class AndroidPermissionsConfig {
      * @public
      */
     addFacialRecognitionVerify() {
-        this.permissions.push(...facialRecognitionVerify)
+        this.permissions.push(facialRecognitionVerify)
         return this
     }
 
     addIBeacon() {
-        this.permissions.push(...iBeacon)
+        this.permissions.push(iBeacon)
         return this
     }
 
@@ -207,42 +213,28 @@ export class AndroidPermissionsConfig {
      */
 
     addMessage() {
-        this.permissions.push(...messaging)
+        this.permissions.push(messaging)
         return this
     }
 
     addUniPush() {
-        this.permissions.push(...uniPush)
+        this.permissions.push(uniPush)
         return this
     }
 
-    addWxShare() {
-        this.permissions.push(...wxShare)
-        return this
-    }
-
-    addQQShare() {
-        this.permissions.push(...qqShare)
-        return this
-    }
-
-    addWbShare() {
-        this.permissions.push(...weiBoShare)
-        return this
-    }
 
     addBaiduSpeech() {
-        this.permissions.push(...baiduSpeechRecognition)
+        this.permissions.push(baiduSpeechRecognition)
         return this
     }
 
     addXfSpeech() {
-        this.permissions.push(...IFLYTEKSpeechRecognition)
+        this.permissions.push(IFLYTEKSpeechRecognition)
         return this
     }
 
     addStatic() {
-        this.permissions.push(...friendlyLeagueStatistics)
+        this.permissions.push(friendlyLeagueStatistics)
         return this
     }
 }

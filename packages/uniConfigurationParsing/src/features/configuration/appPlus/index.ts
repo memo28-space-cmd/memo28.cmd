@@ -1,13 +1,14 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 13:01:16
- * @LastEditTime: 2023-12-23 14:02:21
+ * @LastEditTime: 2023-12-23 14:13:28
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/appPlus/index.ts
  */
 import { amap, baiduMap, geolocation, googleMap } from '../app/distribute'
 import { faceBookOAuth, googleOAuth, qqOAuth, sinaOAuth, wxOAuth } from '../app/distribute/oauth'
 import { aliPay, googlePay, paypalPay, stripePay, wxPay } from '../app/distribute/pay'
+import { qqShare, sinaShare, wxShare } from '../app/distribute/share'
 import { AndroidDistribute } from './android.distribute'
 import { IosDistribute } from './ios.distribute'
 
@@ -103,6 +104,11 @@ export interface AppPlus {
                 stripe: stripePay
                 google: googlePay
                 appleiap: {}
+            }>
+            share: Partial<{
+                weixin: wxShare,
+                sina: sinaShare,
+                qq: qqShare
             }>
         }>,
         orientation: {}

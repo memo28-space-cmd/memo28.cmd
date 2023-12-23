@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-22 16:36:04
- * @LastEditTime: 2023-12-22 17:11:37
+ * @LastEditTime: 2023-12-23 14:27:51
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.pay.ts
  */
@@ -9,11 +9,12 @@ import defaultsDeep from 'lodash.defaultsdeep';
 import { alipay, wxPay as wxPayPermissions } from '../../../configuration/app/distribute';
 import { aliPay, paypalPay, stripePay, wxPay } from '../../../configuration/app/distribute/pay';
 import { UniConfigurationParsingOptions } from '../../../configuration/index';
+import { AndroidPermissionsConfigImpl, androidPermissionsConfigImplDoNotExportToUsers } from './android.permissions.config.impl';
 import { Permissions } from './permissions';
 
-export type userAndroidPermissionsConfigPay = Omit<AndroidPermissionsConfigPay, 'permissions' | 'getConfig'>
+export type userAndroidPermissionsConfigPay = Omit<AndroidPermissionsConfigPay, androidPermissionsConfigImplDoNotExportToUsers>
 
-export class AndroidPermissionsConfigPay {
+export class AndroidPermissionsConfigPay implements AndroidPermissionsConfigImpl {
     permissions: Permissions = new Permissions()
     private config: Partial<UniConfigurationParsingOptions> = {}
 
