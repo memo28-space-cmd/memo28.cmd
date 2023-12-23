@@ -1,12 +1,13 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 09:37:21
- * @LastEditTime: 2023-12-22 17:14:07
+ * @LastEditTime: 2023-12-23 20:56:09
  * @Description: 配置
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/index.ts
  */
-import { AppPlus } from './appPlus/index'
-import { eachSideGeneralConfiguration } from './common/generalConfiguration'
+import { AppPlus } from './appPlus/index';
+import { eachSideGeneralConfiguration } from './common/generalConfiguration';
+import { wxConfiguration } from './wexin/wx.configuration';
 
 
 /**
@@ -17,8 +18,9 @@ import { eachSideGeneralConfiguration } from './common/generalConfiguration'
  * 
  */
 export interface UniConfigurationParsingOptions {
-    [key: string]: any
-    vueVersion?: string
+    [key: string]: any;
+
+    vueVersion?: "2" | "3"
     /**
      * 
      * 应用名
@@ -152,7 +154,7 @@ export interface UniConfigurationParsingOptions {
      * 
      * @public
      */
-    'mp-weixin'?: eachSideGeneralConfiguration
+    'mp-weixin'?: eachSideGeneralConfiguration & Partial<wxConfiguration>
 
     /**
      * 

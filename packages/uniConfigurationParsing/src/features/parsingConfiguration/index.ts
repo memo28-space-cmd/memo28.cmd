@@ -1,13 +1,14 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 09:54:39
- * @LastEditTime: 2023-12-23 14:42:20
+ * @LastEditTime: 2023-12-23 20:57:45
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/index.ts
  */
 
 import defaultDeep from 'lodash.defaultsdeep';
 import { UniConfigurationParsingOptions } from '../configuration/index';
+import { wxConfiguration } from '../configuration/wexin/wx.configuration';
 import { AndroidPermissions, androidPermissionsConfigFn } from './app/distribute/android.permissions';
 import { ParseVersion } from './parseVersion';
 
@@ -32,8 +33,8 @@ export class ParsingConfiguration {
      * 
      * @public 
      */
-    completeDefault() {
-        this.h = {
+    private completeDefault() {
+        this.h = defaultDeep(this.h, {
             ...this.h,
             debug: this.h?.debug || false,
             description: '',
@@ -43,6 +44,16 @@ export class ParsingConfiguration {
                 enable: this.h?.uniStatistics?.enable || true
             },
             vueVersion: this.h?.vueVersion || '3',
+            "app-plus": {
+                splashscreen: {
+                    delay: 0,
+                    alwaysShowBeforeRender: true,
+                    autoclose: true,
+                    waiting: true
+                },
+                nvueStyleCompiler: 'uni-app',
+                compilerVersion: 3
+            },
             "mp-alipay": this.h['mp-alipay'] || {
                 usingComponents: true
             },
@@ -52,7 +63,15 @@ export class ParsingConfiguration {
             "mp-toutiao": this.h['mp-toutiao'] || {
                 usingComponents: true
             },
-        }
+            "mp-weixin": defaultDeep(this.h['mp-weixin'], {
+                setting: {
+                    es6: true,
+                    postcss: true,
+                    minified: true
+                },
+                usingComponents: true
+            } as Partial<wxConfiguration>)
+        } as Partial<UniConfigurationParsingOptions>)
         return this
     }
 
@@ -75,8 +94,10 @@ export class ParsingConfiguration {
         return this
     }
 
-    done() {
-        return this.h
+    done(config?: Partial<UniConfigurationParsingOptions>) {
+        this.completeDefault()
+
+        return defaultDeep(this.h, config)
     }
 }
 

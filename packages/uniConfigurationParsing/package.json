@@ -1,23 +1,44 @@
 {
   "name": "@memo28.cmd/uni-configuration-parsing",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.2",
+  "description": "通过强大的代码提示、类型检查，以及模块化配置，改善 manifest.json 文件的编写体验，提高开发效率",
+  "main": "./lib/index.js",
+  "module": "./dist/index.js",
+  "types": "./dts/index.d.ts",
+  "bin": "./lib/main.js",
   "scripts": {
     "test": "vitest run",
-    "build:cjs": "tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true",
-    "build:es": "tsc --module es6 --rootDir ./src --outDir ./dist --experimentalDecorators true",
-    "build": "pnpm build:cjs && pnpm build:es",
+    "build:cjs": "rm -rf ./lib && tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true",
+    "build:es": "rm -rf ./dist &&  tsc --module es6 --rootDir ./src --outDir ./dist --experimentalDecorators true",
+    "build:cjs:watch": "tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true --watch",
+    "build:es:watch": "tsc --module es6 --rootDir ./src --outDir ./dist --experimentalDecorators true --watch",
+    "build": "rm -rf ./dts && pnpm build:cjs && pnpm build:es",
+    "build:watch": "pnpm build:cjs:watch && pnpm build:es:watch",
     "build:md": "pnpm build && api-extractor run --local --verbose",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "links": "pnpm link --global"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "files": [
+    "./dist",
+    "./lib",
+    "./dts"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "keywords": [
+    "uniapp",
+    "typescript"
+  ],
+  "author": "memo.repo",
+  "license": "MIT",
   "dependencies": {
     "@types/lodash.defaultsdeep": "^4.6.9",
-    "lodash.defaultsdeep": "^4.6.1"
+    "chokidar": "^3.5.3",
+    "commander": "^11.1.0",
+    "lodash.defaultsdeep": "^4.6.1",
+    "typescript": "^5.3.3"
   }
 }

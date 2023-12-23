@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 13:01:16
- * @LastEditTime: 2023-12-23 14:50:29
+ * @LastEditTime: 2023-12-23 15:07:24
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/appPlus/index.ts
  */
@@ -26,10 +26,40 @@ export interface AppPlus {
      * 
      * App 启动界面信息
      * 
+     * @see  https://uniapp.dcloud.net.cn/collocation/manifest.html#splashscreen
+     * 
      * @public
      */
-    splashscreen: {}
-
+    splashscreen: {
+        /**
+         * 
+         * @defaultValue true
+         * 
+         * @public
+         */
+        alwaysShowBeforeRender: boolean,
+        /**
+         * 
+         * @defaultValue true
+         * 
+         * @public
+         */
+        autoclose: boolean
+        /**
+         * 
+         * @defaultValue true
+         * 
+         * @public
+         */
+        waiting: boolean
+        /**
+         * 
+         * @defaultValue 0
+         * 
+         * @public
+         */
+        delay: number
+    }
     /**
      * 
      * 重力感应、横竖屏配置
@@ -118,7 +148,18 @@ export interface AppPlus {
         orientation: {}
     }>
     nvueCompiler: string
-    nvueStyleCompiler: string
+    /**
+     * 
+     * 
+     * 
+     * @see https://ask.dcloud.net.cn/article/38751
+     * 
+     * @defaultValue uni-app
+     * 
+     * @public
+     */
+    nvueStyleCompiler: 'weex' | 'uni-app'
+    compilerVersion: 2 | 3
     renderer: string
     nvueLaunchMode: string
     nvue: {}
