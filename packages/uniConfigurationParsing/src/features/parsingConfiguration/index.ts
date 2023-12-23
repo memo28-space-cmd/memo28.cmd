@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 09:54:39
- * @LastEditTime: 2023-12-21 14:24:22
+ * @LastEditTime: 2023-12-23 14:03:51
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/index.ts
  */
@@ -43,6 +43,15 @@ export class ParsingConfiguration {
                 enable: this.h?.uniStatistics?.enable || true
             },
             vueVersion: this.h?.vueVersion || '3',
+            "app-plus": {
+                distribute: {
+                    android: {
+                        abiFilters: this.h['app-plus']?.distribute?.android?.abiFilters || ['arm64-v8a', 'arm64-v8a', 'arm64-v8a'],
+                        minSdkVersion: this.h['app-plus']?.distribute?.android?.minSdkVersion || 19,
+                        targetSdkVersion: this.h['app-plus']?.distribute?.android?.targetSdkVersion || 26
+                    }
+                }
+            },
             "mp-alipay": this.h['mp-alipay'] || {
                 usingComponents: true
             },

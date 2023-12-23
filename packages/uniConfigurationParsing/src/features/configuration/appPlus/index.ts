@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 13:01:16
- * @LastEditTime: 2023-12-22 22:50:03
+ * @LastEditTime: 2023-12-23 14:02:21
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/appPlus/index.ts
  */
@@ -79,7 +79,7 @@ export interface AppPlus {
      * @public
      */
     distribute: Partial<{
-        android: AndroidDistribute,
+        android: Partial<AndroidDistribute>,
         ios: IosDistribute,
         sdkConfigs: Partial<{
             geolocation: Partial<geolocation>

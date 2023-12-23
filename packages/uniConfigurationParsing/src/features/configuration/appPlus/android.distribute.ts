@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-21 13:07:24
- * @LastEditTime: 2023-12-21 13:17:20
+ * @LastEditTime: 2023-12-23 14:03:22
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/appPlus/android.distribute.ts
  */
@@ -21,23 +21,23 @@ export interface AndroidDistribute {
      * @public
      */
     packagename: string
-        /**
-     * 
-     * Android平台云端打包使用的签名证书文件路径
-     * @public
-     */
+    /**
+ * 
+ * Android平台云端打包使用的签名证书文件路径
+ * @public
+ */
     keystore: string
-      /**
-     * 
-     * Android平台云端打包使用的签名证书的密码，要求证书存储密码和证书密码相同
-     * @public
-     */
+    /**
+   * 
+   * Android平台云端打包使用的签名证书的密码，要求证书存储密码和证书密码相同
+   * @public
+   */
     password: string
-          /**
-     * 
-     * Android平台云端打包使用的证书别名
-     * @public
-     */
+    /**
+* 
+* Android平台云端打包使用的证书别名
+* @public
+*/
     aliasname: string
     /**
      * 
@@ -53,7 +53,7 @@ export interface AndroidDistribute {
      * @public
      * 
      */
-    abiFilters: []
+    abiFilters: ("arm64-v8a" | "armeabi-v7a" | "x86")[]
     /**
      * Android平台App使用的权限
      * 
@@ -87,16 +87,20 @@ export interface AndroidDistribute {
      * 
      * Android平台最低支持版本，[详情参考](https://uniapp.dcloud.net.cn/tutorial/app-android-minsdkversion.html)
      * 
+     * @defaultValue 19
+     * 
      * @public
      */
-    minSdkVersion: string
+    minSdkVersion: number 
     /**
      * 
      * Android平台目标版本 详情参考：[Android平台设置targetSdkVersion](https://uniapp.dcloud.net.cn/tutorial/app-android-targetsdkversion.html)
      * 
+     * @defaultValue 26
+     * 
      * @public
      */
-    targetSdkVersion: string
+    targetSdkVersion: number
     /**
      * 
      * Android平台云端打包时build.gradle的packagingOptions配置项，示例："packagingOptions": ["doNotStrip '/armeabi-v7a/.so'","merge **\/LICENSE.txt]
