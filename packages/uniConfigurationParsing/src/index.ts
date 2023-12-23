@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 09:35:53
- * @LastEditTime: 2023-12-23 14:43:20
+ * @LastEditTime: 2023-12-23 14:53:38
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/index.ts
  */
@@ -19,8 +19,13 @@ const h: UniConfigurationParsingOptions = {
 const finalConfig = new ParsingConfiguration(h)
     .addAndroidPermissions((config) => {
         config.androidPermissionsConfigShare.addQQShare({
-            appid: '', 
+            appid: '',
             UniversalLinks: ""
+        })
+        config.androidPermissionsConfigSpeech.addBaiduSpeech({
+            "apikey": "",
+            "appid": "",
+            "secretkey": ""
         })
         config.androidPermissionsConfigPay.addGoolePay()
 

@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 23:21:48
- * @LastEditTime: 2023-12-23 14:40:57
+ * @LastEditTime: 2023-12-23 14:52:19
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.ts
  */
@@ -17,6 +17,7 @@ import { AndroidPermissionsConfigOauth, userAndroidPermissionsConfigOauth } from
 import { AndroidPermissionsConfigPay, userAndroidPermissionsConfigPay } from './android.permissions.config.pay';
 import { AndroidPermissionsConfigPositioning, userAndroidPermissionsConfigPositioning } from './android.permissions.config.positioning';
 import { AndroidPermissionsConfigShare, userAndroidPermissionsConfigShare } from './android.permissions.config.share';
+import { AndroidPermissionsConfigSpeech, userAndroidPermissionsConfigSpeech } from './android.permissions.config.speech';
 
 /**
  * 
@@ -36,6 +37,9 @@ export class AndroidPermissionsConfig extends AndroidPermissionsConfigHelper {
      * 
      */
     public androidPermissionsConfigPositioning: userAndroidPermissionsConfigPositioning = new AndroidPermissionsConfigPositioning()
+
+
+    public androidPermissionsConfigSpeech: userAndroidPermissionsConfigSpeech = new AndroidPermissionsConfigSpeech()
 
     public androidPermissionsConfigShare: userAndroidPermissionsConfigShare = new AndroidPermissionsConfigShare()
 
@@ -60,6 +64,7 @@ export class AndroidPermissionsConfig extends AndroidPermissionsConfigHelper {
             this.androidPermissionsConfigOauth as unknown as AndroidPermissionsConfigImpl,
             this.androidPermissionsConfigPositioning as unknown as AndroidPermissionsConfigImpl,
             this.androidPermissionsConfigShare as unknown as AndroidPermissionsConfigImpl,
+            this.androidPermissionsConfigSpeech as unknown as AndroidPermissionsConfigImpl,
         ])
         this.getReferencPermissions()
     }
