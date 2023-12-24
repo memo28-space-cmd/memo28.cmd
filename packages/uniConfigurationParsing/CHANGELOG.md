@@ -1,5 +1,11 @@
 # @memo28.cmd/uni-configuration-parsing
 
+## 0.0.4
+
+### Patch Changes
+
+- fe4e29d: 修复安卓默认权限配置丢失
+
 ## 0.0.3
 
 ### Patch Changes
