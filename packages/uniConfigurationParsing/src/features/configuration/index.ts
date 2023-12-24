@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 09:37:21
- * @LastEditTime: 2023-12-23 20:56:09
+ * @LastEditTime: 2023-12-24 20:25:58
  * @Description: 配置
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/index.ts
  */

@@ -1,6 +1,6 @@
 {
   "name": "@memo28.cmd/uni-configuration-parsing",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "通过强大的代码提示、类型检查，以及模块化配置，改善 manifest.json 文件的编写体验，提高开发效率",
   "main": "./lib/index.js",
   "module": "./dist/index.js",
