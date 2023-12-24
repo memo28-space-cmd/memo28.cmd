@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-23 21:01:42
- * @LastEditTime: 2023-12-24 20:31:37
+ * @LastEditTime: 2023-12-24 20:46:42
  * @Description:
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/main.ts
  */
@@ -9,6 +9,7 @@ import { program } from 'commander';
 import { existsSync, readFileSync, writeFile } from 'fs';
 import { resolve } from 'path';
 import * as ts from 'typescript';
+import { setMode } from './features/userProvidesHelpAssistant/mode';
 
 
 // @ts-ignore
@@ -30,7 +31,14 @@ program
     .command('dev')
     .description("一watch方式启动观察配置文件变化")
     .option("--p <chat>", "修改配置文件路径")
+    .option("--m <chat>", "定义模式。--m=dev , --m=prod")
     .action((str, options) => {
+
+        if (str.m) {
+            console.log("mode：", str.m)
+            setMode(str.m)
+        }
+
         let path = str.p ? resolve(str.p) : rootMutConfigPathTs
         if (!existsSync(path)) {
             if (!existsSync(rootMutConfigPathJs)) {

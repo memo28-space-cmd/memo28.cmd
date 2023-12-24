@@ -36,6 +36,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/lodash.defaultsdeep": "^4.6.9",
+    "@types/node": "^20.10.5",
     "chokidar": "^3.5.3",
     "commander": "^11.1.0",
     "lodash.defaultsdeep": "^4.6.1",
