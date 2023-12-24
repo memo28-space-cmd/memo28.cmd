@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 23:21:48
- * @LastEditTime: 2023-12-23 14:52:19
+ * @LastEditTime: 2023-12-24 21:57:16
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.ts
  */
@@ -227,11 +227,6 @@ export class AndroidPermissionsConfig extends AndroidPermissionsConfigHelper {
         return this
     }
 
-
-    addBaiduSpeech() {
-        this.permissions.push(baiduSpeechRecognition)
-        return this
-    }
 
     addXfSpeech() {
         this.permissions.push(IFLYTEKSpeechRecognition)

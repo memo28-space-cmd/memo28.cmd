@@ -1,5 +1,11 @@
 # @memo28.cmd/uni-configuration-parsing
 
+## 0.0.5
+
+### Patch Changes
+
+- 修复一个错误的 api 暴露逻辑
+
 ## 0.0.4
 
 ### Patch Changes
