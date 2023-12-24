@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-23 21:01:42
- * @LastEditTime: 2023-12-24 20:46:42
+ * @LastEditTime: 2023-12-24 21:01:21
  * @Description:
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/main.ts
  */
@@ -35,7 +35,7 @@ program
     .action((str, options) => {
 
         if (str.m) {
-            console.log("mode：", str.m)
+            console.log("mode: ", str.m)
             setMode(str.m)
         }
 
