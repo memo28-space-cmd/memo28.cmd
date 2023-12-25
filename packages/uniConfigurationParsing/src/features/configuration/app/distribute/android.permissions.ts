@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 10:25:24
- * @LastEditTime: 2023-12-20 23:17:06
+ * @LastEditTime: 2023-12-25 11:19:37
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/configuration/app/distribute/android.permissions.ts
  */
@@ -354,10 +354,17 @@ export const tencentAdvertising = [
     "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
     "<uses-permission android:name=\"android.permission.REQUEST_INSTALL_PACKAGES\" />",
     "<uses-permission android:name=\"android.permission.QUERY_ALL_PACKAGES\" />",
-	"<uses-permission android:name=\"android.permission.INTERNET\" />",
+    "<uses-permission android:name=\"android.permission.INTERNET\" />",
     "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
     "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
     "<uses-permission android:name=\"android.permission.REORDER_TASKS\" />",
     "<uses-permission android:name=\"android.permission.VIBRATE\" />",
 ]
 
+
+export const wifi = [
+    "<uses-permission android: name=\"android.permission.ACCESS_WIFI_STATE\" />",
+    "<uses-permission android: name=\"android.permission.CHANGE_WIFI_STATE\" />",
+    "<uses-permission android: name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+    "<uses-permission android: name=\"android.permission.ACCESS_COARSE_LOCATION\" />"
+]

@@ -1,14 +1,14 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-20 23:21:48
- * @LastEditTime: 2023-12-24 21:57:16
+ * @LastEditTime: 2023-12-25 11:19:52
  * @Description: 
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.ts
  */
 
 import defaultsDeep from 'lodash.defaultsdeep';
 import { UniConfigurationParsingOptions } from '../../../configuration';
-import { IFLYTEKSpeechRecognition, alipay, baiduSpeechRecognition, bluetooth, contact, facialRecognitionVerify, fingerprint, friendlyLeagueStatistics, iBeacon, messaging, qqOAuth, qqShare, scottMaps, uniPush, userGeolocation, weiBoShare, wxOAuth, wxPay, wxShare } from '../../../configuration/app/distribute/index';
+import { IFLYTEKSpeechRecognition, bluetooth, contact, facialRecognitionVerify, fingerprint, friendlyLeagueStatistics, iBeacon, messaging, qqOAuth, qqShare, scottMaps, uniPush, userGeolocation, weiBoShare, wifi, wxOAuth, wxPay, wxShare } from '../../../configuration/app/distribute/index';
 import { ManiFest } from '../../comon/getMainfast';
 import { AndroidPermissionsConfigHelper } from './android.permissions.config.helper';
 import { AndroidPermissionsConfigImpl } from './android.permissions.config.impl';
@@ -210,7 +210,10 @@ export class AndroidPermissionsConfig extends AndroidPermissionsConfigHelper {
         return this
     }
 
-
+    addWifi() {
+        this.permissions.push(wifi)
+        return this
+    }
 
     /**
      * 

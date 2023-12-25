@@ -1,5 +1,11 @@
 # @memo28.cmd/uni-configuration-parsing
 
+## 0.0.6
+
+### Patch Changes
+
+- 新增 wifi 模块权限
+
 ## 0.0.5
 
 ### Patch Changes
