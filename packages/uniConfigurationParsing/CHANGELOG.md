@@ -1,5 +1,11 @@
 # @memo28.cmd/uni-configuration-parsing
 
+## 0.0.7
+
+### Patch Changes
+
+- 新增 unipush 模块
+
 ## 0.0.6
 
 ### Patch Changes
