@@ -1,0 +1,48 @@
+{
+  "name": "@memo28.cmd/dynamically-generate-pages",
+  "version": "0.0.2",
+  "description": "动态生成pages文件",
+  "main": "./lib/index.js",
+  "module": "./dist/index.js",
+  "types": "./dts/index.d.ts",
+  "bin": "./lib/main.js",
+  "scripts": {
+    "test": "vitest run",
+    "build:cjs": "rm -rf ./lib && tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true",
+    "build:es": "rm -rf ./dist &&  tsc --module es6 --rootDir ./src --outDir ./dist --experimentalDecorators true",
+    "build:cjs:watch": "tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true --watch",
+    "build:es:watch": "tsc --module es6 --rootDir ./src --outDir ./dist --experimentalDecorators true --watch",
+    "build": "rm -rf ./dts && pnpm build:cjs && pnpm build:es",
+    "build:watch": "pnpm build:cjs:watch && pnpm build:es:watch",
+    "build:md": "pnpm build && api-extractor run --local --verbose",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "links": "pnpm link --global"
+  },
+  "files": [
+    "./dist",
+    "./lib",
+    "./dts"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "keywords": [
+    "uniapp",
+    "typescript"
+  ],
+  "author": "memo.repo",
+  "license": "MIT",
+  "dependencies": {
+    "@memo28.cmd/dynamically-generate-pages": "^0.0.2",
+    "@memo28.cmd/error": "^0.0.1",
+    "@types/lodash.defaultsdeep": "^4.6.9",
+    "@types/node": "^20.10.5",
+    "commander": "^11.1.0",
+    "glob": "^10.3.10",
+    "json5": "^2.2.3",
+    "lodash.defaultsdeep": "^4.6.1",
+    "typescript": "^5.3.3"
+  }
+}
