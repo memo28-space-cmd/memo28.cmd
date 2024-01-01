@@ -1,5 +1,13 @@
 # @memo28.cmd/dynamically-generate-pages
 
+## 0.0.4
+
+### Patch Changes
+
+- 新增 generateClaimsRoute 参数用于自动生成项目内路由声明式文件
+- Updated dependencies
+  - @memo28.cmd/dynamically-generate-pages@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes

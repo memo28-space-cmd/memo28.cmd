@@ -5,7 +5,6 @@
   "main": "./lib/index.js",
   "module": "./dist/index.js",
   "types": "./dts/index.d.ts",
-  "bin": "./lib/main.js",
   "scripts": {
     "test": "vitest run",
     "build:cjs": "rm -rf ./lib && tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true",

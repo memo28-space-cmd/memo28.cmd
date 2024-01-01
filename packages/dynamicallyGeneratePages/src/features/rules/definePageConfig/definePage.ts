@@ -7,7 +7,7 @@ export interface definePageOptions {
      *
      * @public
      */
-    pages: Partial<pages>
+    pages: Partial<Omit<pages, 'path'>>
 }
 
 export function definePageConfig(opt: definePageOptions): definePageOptions {

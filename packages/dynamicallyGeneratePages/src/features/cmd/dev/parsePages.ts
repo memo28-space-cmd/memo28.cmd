@@ -6,7 +6,7 @@ import {resolve, dirname} from "path";
 import {writeFile} from 'fs'
 import {globSync} from "glob";
 import {ParseHelper, template} from "../../parsing/parse.helper";
-import {ParseImpl} from "../../parsing/parseImpl";
+import {getMetaTypes, ParseImpl} from "../../parsing/parseImpl";
 
 
 /**
@@ -28,22 +28,37 @@ import {ParseImpl} from "../../parsing/parseImpl";
  */
 export class ParsePages extends ParseHelper implements ParseImpl {
 
+    private dycConfigPages: runConfigurePathEffectivelyReturn[] = []
+
     constructor(private pages: {
         path: string,
         style?: Partial<PageStyle>
-    }[], private dycConfigPages: runConfigurePathEffectivelyReturn[], private userConfig: defineConfigTypes) {
+    }[], private userConfig: defineConfigTypes) {
         super()
     }
 
+    getConfig(): defineConfigTypes {
+        return this.userConfig
+    }
+
+    setPackageRulesParseResult(list: runConfigurePathEffectivelyReturn[]): this {
+        this.dycConfigPages = list
+        return this;
+    }
+
+    getPackageRulesParseResult(): runConfigurePathEffectivelyReturn[] {
+        return this.dycConfigPages
+    }
+
     updatePagesHandler() {
-        return this.updatePages(this.dycConfigPages, this.pages, (curPage, style) => {
+        return this.updatePages(this.getPackageRulesParseResult(), this.pages, (curPage, style) => {
             curPage.style = style
         })
     }
 
 
     increasePagesHandler() {
-        return this.increasePages(this.dycConfigPages, this.pages, (item) => {
+        return this.increasePages(this.getPackageRulesParseResult(), this.pages, (item) => {
             this.pages.push({
                 path: item.path,
                 style: item.pagesConfig.pages.style
@@ -62,5 +77,19 @@ export class ParsePages extends ParseHelper implements ParseImpl {
             })
 
         })
+    }
+
+    generateConfigurationSorting(): this {
+        this.pages.sort((a, b) => {
+            return (b.style?.orderIndex || 0) - (a.style?.orderIndex || 0)
+        })
+        return this
+    }
+
+    getMeta(): getMetaTypes {
+        return {
+            isMainPackage: true,
+            isSubPackage: false
+        };
     }
 }

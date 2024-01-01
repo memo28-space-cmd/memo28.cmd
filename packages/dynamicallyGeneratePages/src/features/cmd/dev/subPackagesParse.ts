@@ -1,7 +1,7 @@
 import {SubPackages} from "../../rules/subPackages";
 import {runConfigurePathEffectivelyReturn} from "./dev";
 import {defineConfigTypes} from "../../rules/defineConfig";
-import {ParseImpl} from "../../parsing/parseImpl";
+import {getMetaTypes, ParseImpl} from "../../parsing/parseImpl";
 import {ParseHelper} from "../../parsing/parse.helper";
 import {writeFile} from "fs";
 
@@ -17,12 +17,28 @@ import {writeFile} from "fs";
  */
 export class SubPackagesParse extends ParseHelper implements ParseImpl {
 
-    constructor(private subPackages: SubPackages[], private subPackagesRulesParseResult: runConfigurePathEffectivelyReturn[], private userConfig: defineConfigTypes) {
+    private subPackagesRulesParseResult: runConfigurePathEffectivelyReturn[] = []
+
+    constructor(private subPackages: SubPackages[], private userConfig: defineConfigTypes) {
         super()
     }
 
+
+    getConfig(): defineConfigTypes {
+        return this.userConfig;
+    }
+
+    setPackageRulesParseResult(list: runConfigurePathEffectivelyReturn[]): this {
+        this.subPackagesRulesParseResult = list
+        return this;
+    }
+
+    getPackageRulesParseResult(): runConfigurePathEffectivelyReturn[] {
+        return this.subPackagesRulesParseResult;
+    }
+
     increasePagesHandler() {
-        return this.increaseSubPages(this.subPackagesRulesParseResult, this.subPackages, (item: runConfigurePathEffectivelyReturn, root) => {
+        return this.increaseSubPages(this.getPackageRulesParseResult(), this.subPackages, (item: runConfigurePathEffectivelyReturn, root) => {
             if (root) {
                 for (let i = 0; i < this.subPackages.length; i++) {
                     const rootLayout = this.subPackages[i]
@@ -48,9 +64,22 @@ export class SubPackagesParse extends ParseHelper implements ParseImpl {
     }
 
     updatePagesHandler() {
-        return this.updatePagesSubPage(this.subPackagesRulesParseResult, this.subPackages, (curPage, style) => {
+        return this.updatePagesSubPage(this.getPackageRulesParseResult(), this.subPackages, (curPage, style) => {
             curPage.style = style
         })
     }
+
+    generateConfigurationSorting(): this {
+        return this;
+    }
+
+
+    getMeta(): getMetaTypes {
+        return {
+            isSubPackage: true,
+            isMainPackage: false
+        };
+    }
+
 
 }

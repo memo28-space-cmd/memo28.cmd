@@ -45,9 +45,6 @@ importers:
 
   packages/dynamicallyGeneratePages:
     dependencies:
-      '@memo28.cmd/dynamically-generate-pages':
-        specifier: ^0.0.1
-        version: 'link:'
       '@memo28.cmd/error':
         specifier: ^0.0.1
         version: link:../error

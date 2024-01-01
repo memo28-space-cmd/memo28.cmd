@@ -5,6 +5,16 @@ import {pageStyleWeixin} from "./page.style.weixin";
 export interface PageStyle {
     /**
      *
+     * 该配置只对主包生效用于定义路由的列表顺序
+     *
+     * 索引值越大 越靠前
+     *
+     * @public
+     *
+     */
+    orderIndex: number
+    /**
+     *
      * 导航栏标题文字内容
      *
      * @public

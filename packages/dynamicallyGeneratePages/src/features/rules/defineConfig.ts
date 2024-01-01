@@ -27,6 +27,8 @@ export interface defineConfigTypes {
      *
      * 配置根 rootPages.json 的路径
      *
+     * 相对路径
+     *
      *
      * @public
      *
@@ -51,6 +53,17 @@ export interface defineConfigTypes {
      *
      */
     whetherMakeUpTheConfigFileSuffix?: 'js' | 'ts'
+
+    /**
+     *
+     * 是否开启根据配置生成 声明式路由
+     *
+     * 路由为生成路由的相对路径
+     *
+     * @public
+     *
+     */
+    generateClaimsRoute?: string
 }
 
 export function defineConfig(opt: defineConfigTypes) {
@@ -84,6 +97,7 @@ export function defineConfig(opt: defineConfigTypes) {
         mainPackageRules,
         rootPagesJsonPath: resolve(rootPagesJsonPath[0]),
         whetherMakeUpTheConfig: opt.whetherMakeUpTheConfig,
-        whetherMakeUpTheConfigFileSuffix: opt.whetherMakeUpTheConfigFileSuffix
+        whetherMakeUpTheConfigFileSuffix: opt.whetherMakeUpTheConfigFileSuffix,
+        generateClaimsRoute: opt.generateClaimsRoute
     }
 }
