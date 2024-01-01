@@ -9,6 +9,8 @@ import {globSync} from "glob";
 import json5 from 'json5'
 import {definePageOptions} from "../../rules/definePageConfig/definePage";
 import {ParsePages} from "./parsePages";
+import {SubPackagesParse} from "./subPackagesParse";
+import {Scheduling} from "../../parsing/scheduling";
 
 const rootDycConfigPathTs = resolve('./dyc.config.ts')
 
@@ -122,7 +124,12 @@ export function dev() {
 
             const mainPackageRulesParseResult = runConfigurePathEffectively(configurePathEffectivelyWithMainPackageRules)
 
-            new ParsePages(pagesJsonResult.pages, mainPackageRulesParseResult, config).increase().update().verifyWhetherMakeUpTheConfig()
+            const subPackagesRulesParseResult = runConfigurePathEffectively(configurePathEffectivelyWithSubPackagesRules)
+
+
+            new Scheduling(new ParsePages(pagesJsonResult.pages, mainPackageRulesParseResult, config))
+
+            new Scheduling(new SubPackagesParse(pagesJsonResult.subPackages, subPackagesRulesParseResult, config))
 
         })
 }

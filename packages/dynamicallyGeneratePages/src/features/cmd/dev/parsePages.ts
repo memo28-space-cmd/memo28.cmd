@@ -3,8 +3,11 @@ import defaultDeep from 'lodash.defaultsdeep'
 import {rootDycPageConfigPathJs, rootDycPageConfigPathTs, runConfigurePathEffectivelyReturn} from "./dev";
 import {defineConfigTypes} from "../../rules/defineConfig";
 import {resolve, dirname} from "path";
-import {writeFile, readFile} from 'fs'
+import {writeFile} from 'fs'
 import {globSync} from "glob";
+import {ParseHelper, template} from "../../parsing/parse.helper";
+import {ParseImpl} from "../../parsing/parseImpl";
+
 
 /**
  *
@@ -23,68 +26,41 @@ import {globSync} from "glob";
  * @public
  *
  */
-export class ParsePages {
+export class ParsePages extends ParseHelper implements ParseImpl {
+
     constructor(private pages: {
         path: string,
         style?: Partial<PageStyle>
     }[], private dycConfigPages: runConfigurePathEffectivelyReturn[], private userConfig: defineConfigTypes) {
+        super()
     }
 
-
-    update() {
-        for (let i = 0; i < this.pages.length; i++) {
-            const curPage = this.pages[i]
-            const findConfig = this.dycConfigPages.find(p => p.path === curPage.path)
-            if (!findConfig) continue
-            curPage.style = defaultDeep({}, curPage.style, findConfig?.pagesConfig?.pages?.style)
-        }
-        return this
-    }
-
-
-    increase() {
-        this.dycConfigPages.forEach(i => {
-            const hasRoute = this.pages.find(p => p.path === i.path)
-            if (!hasRoute) {
-                this.pages.push({
-                    path: i.path,
-                    style: i.pagesConfig.pages.style
-                })
-            }
+    updatePagesHandler() {
+        return this.updatePages(this.dycConfigPages, this.pages, (curPage, style) => {
+            curPage.style = style
         })
-        return this
     }
 
-    verifyWhetherMakeUpTheConfig() {
-        if (!this.userConfig.whetherMakeUpTheConfig) {
-            return this
-        }
 
-        const template = `
-        import {definePageConfig} from '@memo28.cmd/dynamically-generate-pages'
-
-        export default definePageConfig({
-            pages: {
-
-            }
+    increasePagesHandler() {
+        return this.increasePages(this.dycConfigPages, this.pages, (item) => {
+            this.pages.push({
+                path: item.path,
+                style: item.pagesConfig.pages.style
+            })
         })
-        `
-        for (let i = 0; i < this.pages.length; i++) {
-            const pageCur = this.pages[i]
-            const path = resolve(dirname(resolve(pageCur.path)), this.userConfig.whetherMakeUpTheConfigFileSuffix === 'ts' ? rootDycPageConfigPathTs : rootDycPageConfigPathJs)
-            const filePath = globSync(path, {ignore: 'node_modules/**'})
-            if (filePath[0]) continue
+    }
 
+    verifyWhetherMakeUpTheConfigHandler() {
+        return this.verifyWhetherMakeUpTheConfigPage(this.pages, this.userConfig, (path, template) => {
             writeFile(path, template, 'utf-8', (err) => {
                 if (err) {
                     console.log(err?.message)
                 } else {
-                    console.log('创建文件成功 ->', path)
+                    console.log('创建主包页面配置文件成功 ->', path)
                 }
             })
-        }
-        return this
+
+        })
     }
-
-
 }
