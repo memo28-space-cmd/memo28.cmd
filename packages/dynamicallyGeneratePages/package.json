@@ -1,6 +1,6 @@
 {
   "name": "@memo28.cmd/dynamically-generate-pages",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "动态生成pages文件",
   "main": "./lib/index.js",
   "module": "./dist/index.js",
@@ -35,7 +35,7 @@
   "author": "memo.repo",
   "license": "MIT",
   "dependencies": {
-    "@memo28.cmd/dynamically-generate-pages": "^0.0.2",
+    "@memo28.cmd/dynamically-generate-pages": "^0.0.3",
     "@memo28.cmd/error": "^0.0.1",
     "@types/lodash.defaultsdeep": "^4.6.9",
     "@types/node": "^20.10.5",

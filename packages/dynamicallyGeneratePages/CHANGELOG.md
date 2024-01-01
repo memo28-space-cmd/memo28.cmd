@@ -1,5 +1,13 @@
 # @memo28.cmd/dynamically-generate-pages
 
+## 0.0.3
+
+### Patch Changes
+
+- 可成功更新和新增分包信息且可同步更新 pages.json 文件。可用阶段
+- Updated dependencies
+  - @memo28.cmd/dynamically-generate-pages@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes

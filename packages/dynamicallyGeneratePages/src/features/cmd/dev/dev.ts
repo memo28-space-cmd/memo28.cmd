@@ -2,7 +2,7 @@ import {program} from 'commander';
 import {resolve, dirname, parse, basename, extname} from "path";
 import {verifyPathExistsSync} from "@memo28.cmd/error";
 import {PACKAGE_NAME} from "../../../constant/package";
-import {readFileSync} from "fs";
+import {readFileSync, writeFile} from "fs";
 import * as ts from "typescript";
 import {defineConfigTypes} from "../../rules/defineConfig";
 import {globSync} from "glob";
@@ -101,16 +101,6 @@ export function dev() {
 
             // 读取 page.json 文件 json 文件内不应该有注释
             const pagesJsonResult = await import(config.rootPagesJsonPath)
-            // const pageJsonFile = readFileSync(config.rootPagesJsonPath,'utf-8')
-            //
-            // const jsonFileContextTrs = ts.transpileModule(pageJsonFile, {
-            //     compilerOptions: {
-            //         module: ts.ModuleKind.CommonJS
-            //     },
-            // });
-            // const withoutComments = jsonFileContextTrs.outputText.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '');
-            // //
-            // console.log(JSON.parse((withoutComments)))
 
 
             // 有效配置路径
@@ -131,5 +121,10 @@ export function dev() {
 
             new Scheduling(new SubPackagesParse(pagesJsonResult.subPackages, subPackagesRulesParseResult, config))
 
+
+            writeFile(config.rootPagesJsonPath, JSON.stringify(pagesJsonResult, null, 2), 'utf-8', (err) => {
+                if (err) console.log("更新 pages.json 失败", err.message)
+                else console.log("更新 pages.json 成功")
+            })
         })
 }
