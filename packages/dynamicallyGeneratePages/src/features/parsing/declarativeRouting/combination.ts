@@ -21,7 +21,7 @@ export class Combination {
         })
 
         return `
-        import { SimpleRouteJump } from '@bdkuni/utils';
+        import { SimpleRouteJump } from '@memo28.uni/utils';
         
         export default {
         ${h}
