@@ -1,5 +1,11 @@
 # @memo28.cmd/uni-configuration-parsing
 
+## 0.0.8
+
+### Patch Changes
+
+- 配置文件入口和生成 mainfest.json 文件路径新增 uniApp Cli 配置
+
 ## 0.0.7
 
 ### Patch Changes

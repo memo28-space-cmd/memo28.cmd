@@ -1,67 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="423c2bab-c33a-4cc9-b1a4-b97af3d1402c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.changeset/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.changeset/config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.cz-config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/publish.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.husky/commit-msg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.husky/pre-commit" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/commitlint.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/branchManagement.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/experience.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/packagingSpecification.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markdown/index.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/api-extractor.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/app/distribute/android.permissions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/app/distribute/geolocation.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/app/distribute/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/app/distribute/oauth.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/app/distribute/pay.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/app/distribute/share.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/app/distribute/speech.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/appPlus/android.distribute.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/appPlus/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/appPlus/ios.distribute.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/common/generalConfiguration.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/configuration/wexin/wx.configuration.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.helper.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.impl.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.map.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.oauth.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.pay.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.positioning.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.share.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.speech.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/android.permissions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/app/distribute/permissions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/comon/getMainfast.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/parsingConfiguration/parseVersion.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/features/userProvidesHelpAssistant/mode.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/temp/uni-configuration-parsing.api.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/temp/uni-configuration-parsing.api.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/tsdoc-metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-workspace.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/create.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/setup.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/turbo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/uniConfigurationParsing/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,13 +41,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "pnpm",
     "npm.cmdRepo > build.executor": "Run",
     "npm.cmdRepo > build:watch.executor": "Run",
     "npm.cmdRepo > installAll.executor": "Run",
     "settings.editor.selected.configurable": "preferences.startup.tasks",
-    "ts.external.directory.path": "/Users/devops/Desktop/monorepo/cmdRepo/packages/uniConfigurationParsing/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/devops/Desktop/monorepo/cmdRepo/packages/dynamicallyGeneratePages/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -152,6 +101,8 @@
       <updated>1703477741039</updated>
       <workItem from="1703477746420" duration="136000" />
       <workItem from="1703477898558" duration="175000" />
+      <workItem from="1706954381620" duration="37000" />
+      <workItem from="1707275542112" duration="1442000" />
     </task>
     <servers />
   </component>

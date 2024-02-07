@@ -5,11 +5,13 @@
  * @Description:
  * @FilePath: /cmdRepo/packages/uniConfigurationParsing/src/main.ts
  */
-import { program } from 'commander';
-import { existsSync, readFileSync, writeFile } from 'fs';
-import { resolve } from 'path';
+import {program} from 'commander';
+import {readFileSync, writeFile} from 'fs';
+import {resolve} from 'path';
 import * as ts from 'typescript';
-import { setMode } from './features/userProvidesHelpAssistant/mode';
+import {setMode} from './features/userProvidesHelpAssistant/mode';
+// @ts-ignore
+import {verifyPathExistsSync} from '@memo28.cmd/error'
 
 
 // @ts-ignore
@@ -23,9 +25,14 @@ program
 
 const rootMutConfigPathTs = resolve('./mut.config.ts')
 
+const rootMutConfigPathTsWithSrc = resolve('./src/mut.config.ts')
+
 const rootMutConfigPathJs = resolve('./mut.config.js')
 
+const rootMutConfigPathJsWithSrc = resolve('./src/mut.config.js')
+
 const manifestPath = resolve('./manifest.json')
+const manifestPathWithSrc = resolve('./src/manifest.json')
 
 program
     .command('dev')
@@ -40,18 +47,25 @@ program
         }
 
         let path = str.p ? resolve(str.p) : rootMutConfigPathTs
-        if (!existsSync(path)) {
-            if (!existsSync(rootMutConfigPathJs)) {
-                console.log('未发现配置文件')
-                return
-            } else {
-                path = rootMutConfigPathJs
-            }
-        }
 
-        console.log(`发现配置文件 => ${path}`)
+        const finalPath = verifyPathExistsSync({
+            field: "configPath",
+            packageName: "@memo28.cmd/uni-configuration-parsing"
+        }, [path, rootMutConfigPathTs, rootMutConfigPathJs, rootMutConfigPathTsWithSrc, rootMutConfigPathJsWithSrc])?.[0] || ''
 
-        const fileContent = readFileSync(path, 'utf-8')
+        const manifestFinalPath =  verifyPathExistsSync({
+            field: "manifestFinalPath",
+            packageName: "@memo28.cmd/uni-configuration-parsing"
+        },[
+            manifestPath,
+            manifestPathWithSrc
+        ])?.[0] || ''
+
+
+
+        console.log(`发现配置文件 => ${finalPath}`)
+
+        const fileContent = readFileSync(finalPath, 'utf-8')
 
         const result = ts.transpileModule(fileContent, {
             compilerOptions: {
@@ -65,7 +79,7 @@ program
         const content = JSON.stringify(r, null, 2)
 
 
-        writeFile(manifestPath, content, 'utf-8', (err) => {
+        writeFile(manifestFinalPath, content, 'utf-8', (err) => {
             if (err) {
                 console.log(err.message)
             } else {

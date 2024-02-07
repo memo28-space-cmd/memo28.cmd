@@ -81,6 +81,9 @@ importers:
 
   packages/uniConfigurationParsing:
     dependencies:
+      '@memo28.cmd/error':
+        specifier: ^0.0.1
+        version: link:../error
       '@types/lodash.defaultsdeep':
         specifier: ^4.6.9
         version: 4.6.9
