@@ -15,6 +15,7 @@
     "build:watch": "pnpm build:cjs:watch && pnpm build:es:watch",
     "build:md": "pnpm build && api-extractor run --local --verbose",
     "test:watch": "vitest",
+    "test:once": "vitest run",
     "test:ui": "vitest --ui",
     "links": "pnpm link --global"
   },

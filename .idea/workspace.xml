@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="423c2bab-c33a-4cc9-b1a4-b97af3d1402c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/uniConfigurationParsing/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/uniConfigurationParsing/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +99,7 @@
       <workItem from="1703477746420" duration="136000" />
       <workItem from="1703477898558" duration="175000" />
       <workItem from="1706954381620" duration="37000" />
-      <workItem from="1707275542112" duration="1442000" />
+      <workItem from="1707275542112" duration="2472000" />
     </task>
     <servers />
   </component>

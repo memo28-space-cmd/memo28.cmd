@@ -1,4 +1,4 @@
-import {Package} from "../common/package";
+import { Package } from "../common/package";
 
 export interface pathOptions {
     field: string

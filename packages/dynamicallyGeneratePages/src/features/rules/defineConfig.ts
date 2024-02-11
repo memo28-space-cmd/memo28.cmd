@@ -1,6 +1,6 @@
-import {PACKAGE_NAME} from "../../constant/package";
-import {verifyPathExistsSync} from "@memo28.cmd/error";
-import {resolve} from "path";
+import { verifyPathExistsSync } from "@memo28.cmd/error";
+import { resolve } from "path";
+import { PACKAGE_NAME } from "../../constant/package";
 
 export interface defineConfigTypes {
     /**
@@ -66,24 +66,24 @@ export interface defineConfigTypes {
     generateClaimsRoute?: string
 }
 
-export function defineConfig(opt: defineConfigTypes) {
+export function defineConfig(opt?: Partial<defineConfigTypes>) {
     const subPackagesRules = verifyPathExistsSync({
         packageName: PACKAGE_NAME,
         field: 'subPackagesRules'
-    }, opt.subPackagesRules)
+    }, opt?.subPackagesRules)
 
     const mainPackageRules = verifyPathExistsSync({
         packageName: PACKAGE_NAME,
         field: 'mainPackageRules'
-    }, opt.mainPackageRules)
+    }, opt?.mainPackageRules)
 
     const rootPagesJsonPath = verifyPathExistsSync({
         packageName: PACKAGE_NAME,
         field: 'rootPagesJsonPath'
-    }, [opt.rootPagesJsonPath])
+    }, [opt?.rootPagesJsonPath || ""])
 
-    if (opt.whetherMakeUpTheConfig) {
-        if (!opt.whetherMakeUpTheConfigFileSuffix?.trim()) {
+    if (opt?.whetherMakeUpTheConfig) {
+        if (!opt?.whetherMakeUpTheConfigFileSuffix?.trim()) {
             throw new Error("whetherMakeUpTheConfigFileSuffix 字段不能为空: 可选(js | ts)")
         }
 
@@ -96,8 +96,8 @@ export function defineConfig(opt: defineConfigTypes) {
         subPackagesRules,
         mainPackageRules,
         rootPagesJsonPath: resolve(rootPagesJsonPath[0]),
-        whetherMakeUpTheConfig: opt.whetherMakeUpTheConfig,
-        whetherMakeUpTheConfigFileSuffix: opt.whetherMakeUpTheConfigFileSuffix,
-        generateClaimsRoute: opt.generateClaimsRoute
+        whetherMakeUpTheConfig: opt?.whetherMakeUpTheConfig,
+        whetherMakeUpTheConfigFileSuffix: opt?.whetherMakeUpTheConfigFileSuffix,
+        generateClaimsRoute: opt?.generateClaimsRoute
     }
 }

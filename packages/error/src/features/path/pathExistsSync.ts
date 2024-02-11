@@ -1,8 +1,7 @@
-import {Package} from "../common/package";
-import {pathOptions} from "./pathEmpty";
-import {verifyPathEmpty} from './pathEmpty'
-import {fmtPackagePath} from "./fmt";
-import {globSync} from 'glob'
+import { globSync } from 'glob';
+import { Package } from "../common/package";
+import { fmtPackagePath } from "./fmt";
+import { pathOptions, verifyPathEmpty } from "./pathEmpty";
 
 type pathExistsSyncOptions = {
 } & Package & pathOptions

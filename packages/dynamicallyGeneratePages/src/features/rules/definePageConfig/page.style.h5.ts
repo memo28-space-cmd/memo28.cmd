@@ -7,11 +7,13 @@
  *
  */
 export interface pageStyleH5 {
+    [key: string]: any
     titleNView: Partial<pageStyleH5WithTitleNView>
     pullToRefresh: Partial<pageStyleH5WithPullToRefresh>
 }
 
 interface pageStyleH5WithTitleNView {
+    [key: string]: any
     /**
      * 背景颜色，颜色值格式为"#RRGGBB"。
      *
@@ -25,6 +27,7 @@ interface pageStyleH5WithTitleNView {
      * @public
      */
     buttons: Partial<{
+        [key: string]: any
         /**
          *
          *

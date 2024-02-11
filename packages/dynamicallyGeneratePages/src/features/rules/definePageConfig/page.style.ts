@@ -1,6 +1,6 @@
-import {pageStyleH5} from "./page.style.h5";
-import {pageStyleAppPlus} from "./page.style.appPlus";
-import {pageStyleWeixin} from "./page.style.weixin";
+import { pageStyleAppPlus } from "./page.style.appPlus";
+import { pageStyleH5 } from "./page.style.h5";
+import { pageStyleWeixin } from "./page.style.weixin";
 
 export interface PageStyle {
     /**

@@ -1,7 +1,7 @@
-import {program} from 'commander';
+import { program } from 'commander';
 // @ts-ignore
 import pkg from '../package.json';
-import {dev} from './features/cmd/dev/dev'
+import { dev } from './features/cmd/dev/dev';
 
 
 program

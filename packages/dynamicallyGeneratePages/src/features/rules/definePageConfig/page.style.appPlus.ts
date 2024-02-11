@@ -1,4 +1,12 @@
+/*
+ * @Author: @memo28.repo
+ * @Date: 2023-12-29 13:16:52
+ * @LastEditTime: 2024-02-11 20:10:38
+ * @Description: 
+ * @FilePath: /cmdRepo/packages/dynamicallyGeneratePages/src/features/rules/definePageConfig/page.style.appPlus.ts
+ */
 export interface pageStyleAppPlus {
+    [key: string]: any
     /**
      *
      * 窗体背景色。无论vue页面还是nvue页面，在App上都有一个父级原生窗体，该窗体的背景色生效时间快于页面里的css生效时间
@@ -50,7 +58,7 @@ export interface pageStyleAppPlus {
      *
      * @public
      */
-    softinputMode: 'adjustPan'| 'adjustResize'
+    softinputMode: 'adjustPan' | 'adjustResize'
 
 
     /**
