@@ -1,5 +1,5 @@
-import {runConfigurePathEffectivelyReturn} from "./scheduling";
-import {defineConfigTypes} from "../rules/defineConfig";
+import { defineConfigTypes } from "../rules/defineConfig";
+import { runConfigurePathEffectivelyReturn } from "./scheduling";
 
 export interface getMetaTypes {
 

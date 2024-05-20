@@ -1,15 +1,18 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2023-12-29 10:22:55
- * @LastEditTime: 2024-02-11 20:15:23
+ * @LastEditTime: 2024-05-20 10:13:22
  * @Description: 
- * @FilePath: /cmdRepo/packages/dynamicallyGeneratePages/src/index.ts
+ * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/index.ts
  */
+import { getDebugger, setDebugger } from './features/rules/debugger'
 import type { defineConfigTypes } from './features/rules/defineConfig'
 import { defineConfig } from './features/rules/defineConfig'
 import type { definePageOptions } from './features/rules/definePageConfig/definePage'
 import { definePageConfig } from './features/rules/definePageConfig/definePage'
 import { getMode } from './features/rules/mode'
+
+
 
 export type {
     defineConfigTypes,
@@ -18,6 +21,6 @@ export type {
 
 export {
     defineConfig,
-    definePageConfig, getMode
+    definePageConfig, getDebugger, getMode, setDebugger
 }
 

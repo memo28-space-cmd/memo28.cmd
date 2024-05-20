@@ -1,17 +1,25 @@
-import {program} from 'commander';
-import {resolve, dirname, parse} from "path";
-import {verifyPathExistsSync} from "@memo28.cmd/error";
-import {PACKAGE_NAME} from "../../../constant/package";
-import {readFileSync, writeFile} from "fs";
+/*
+ * @Author: @memo28.repo
+ * @Date: 2024-05-19 20:18:31
+ * @LastEditTime: 2024-05-20 10:00:05
+ * @Description: 
+ * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/cmd/dev/dev.ts
+ */
+import { verifyPathExistsSync } from "@memo28.cmd/error";
+import { program } from 'commander';
+import { readFileSync, writeFile } from "fs";
+import { globSync } from "glob";
+import { dirname, resolve } from "path";
 import * as ts from "typescript";
-import {defineConfigTypes} from "../../rules/defineConfig";
-import {globSync} from "glob";
-import {definePageOptions} from "../../rules/definePageConfig/definePage";
-import {ParsePages} from "./parsePages";
-import {SubPackagesParse} from "./subPackagesParse";
-import {Scheduling} from "../../parsing/scheduling";
-import {setMode} from '../../rules/mode'
-import {Combination} from "../../parsing/declarativeRouting/combination";
+import { PACKAGE_NAME } from "../../../constant/package";
+import { Combination } from "../../parsing/declarativeRouting/combination";
+import { Scheduling } from "../../parsing/scheduling";
+import { setDebugger } from "../../rules/debugger";
+import { defineConfigTypes } from "../../rules/defineConfig";
+import { definePageOptions } from "../../rules/definePageConfig/definePage";
+import { setMode } from '../../rules/mode';
+import { ParsePages } from "./parsePages";
+import { SubPackagesParse } from "./subPackagesParse";
 
 export const rootDycConfigPathTs = resolve('./dyc.config.ts')
 
@@ -32,13 +40,13 @@ export const rootDycPageConfigPathTs = ('./dycPage.config.ts')
  */
 function configurePathEffectively(pathGroup: string[]): string[] {
     return pathGroup.filter(i => {
-        const rootDycPageConfigPath = globSync([resolve(dirname(i), rootDycPageConfigPathTs), resolve(dirname(i), rootDycPageConfigPathJs)], {ignore: "node_modules/**"})
+        const rootDycPageConfigPath = globSync([resolve(dirname(i), rootDycPageConfigPathTs), resolve(dirname(i), rootDycPageConfigPathJs)], { ignore: "node_modules/**" })
         return rootDycPageConfigPath.length
     })
 }
 
 
-export  type runConfigurePathEffectivelyReturn = { path: string, pagesConfig: definePageOptions }
+export type runConfigurePathEffectivelyReturn = { path: string, pagesConfig: definePageOptions }
 
 
 function parseStyle() {
@@ -51,8 +59,10 @@ export function dev() {
         .command('dev')
         .description("一watch方式启动观察配置文件变化")
         .option("--p <chat>", "修改配置文件路径")
+        .option("--d ", "开启调试模式")
         .option("--m <chat>", "定义模式。--m=dev , --m=prod")
         .action(async (str, options) => {
+            if (str?.D) setDebugger(true)
             if (str.m) setMode(str.m)
             let path = str.p ? resolve(str.p) : rootDycConfigPathTs
             const result = verifyPathExistsSync({
@@ -70,18 +80,26 @@ export function dev() {
 
 
             // 读取 page.json 文件 json 文件内不应该有注释
-            const pagesJsonResult = await import(config.rootPagesJsonPath)
+            const pagesJsonResult = (await import(config.rootPagesJsonPath)).default
+
+            if (!Reflect.has(pagesJsonResult, 'subPackages')) {
+                Reflect.set(pagesJsonResult, 'subPackages', [])
+            }
 
 
+            // 处理主包逻辑
             const mainScheduling = new Scheduling(new ParsePages(pagesJsonResult.pages, config))
                 .identifyValidRoutes(() =>
                     configurePathEffectively(config.mainPackageRules)
                 ).triggerParsePagesJson()
 
 
-            const subScheduling = new Scheduling(new SubPackagesParse(pagesJsonResult.subPackages, config))
+
+            // 处理分包逻辑
+            const subScheduling = new Scheduling(new SubPackagesParse(pagesJsonResult.subPackages || [], config))
                 .identifyValidRoutes(() => configurePathEffectively(config.subPackagesRules)).triggerParsePagesJson()
 
+            // 自动生成路由文件
             new Combination([mainScheduling.declarativeRouting(), subScheduling.declarativeRouting()], config.generateClaimsRoute).generate()
 
             writeFile(config.rootPagesJsonPath, JSON.stringify(pagesJsonResult, null, 2), 'utf-8', (err) => {

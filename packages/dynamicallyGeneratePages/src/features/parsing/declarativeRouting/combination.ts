@@ -1,4 +1,11 @@
-import {writeFile} from 'fs'
+/*
+ * @Author: @memo28.repo
+ * @Date: 2024-05-19 20:18:31
+ * @LastEditTime: 2024-05-20 09:30:27
+ * @Description: 
+ * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/parsing/declarativeRouting/combination.ts
+ */
+import { writeFile, writeFileSync } from 'fs'
 
 
 export class Combination {
@@ -38,15 +45,8 @@ export class Combination {
 
         const content = this.generateContext()
 
-
-        writeFile(this.pathIsGenerated, content, 'utf-8', (err) => {
-
-            if (err) {
-                console.log("生成路由文件失败:", err.message)
-            } else {
-                console.log("生成路由文件成功")
-            }
-        })
+        writeFileSync(this.pathIsGenerated, content, { encoding: 'utf-8' })
+        console.log("生成路由文件成功")
     }
 
 }

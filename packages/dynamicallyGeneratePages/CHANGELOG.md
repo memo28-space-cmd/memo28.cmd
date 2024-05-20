@@ -1,5 +1,11 @@
 # @memo28.cmd/dynamically-generate-pages
 
+## 0.0.5
+
+### Patch Changes
+
+- 完善新增分包时的情况和新增 debugger 模式
+
 ## 0.0.4
 
 ### Patch Changes

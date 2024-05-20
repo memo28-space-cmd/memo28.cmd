@@ -1,12 +1,12 @@
-import {rootDycPageConfigPathJs, rootDycPageConfigPathTs, runConfigurePathEffectivelyReturn} from "../cmd/dev/dev";
-import {pages} from "../rules/definePageConfig/pages";
+import { writeFile } from "fs";
+import { globSync } from "glob";
 import defaultDeep from "lodash.defaultsdeep";
-import {PageStyle} from "../rules/definePageConfig/page.style";
-import {defineConfigTypes} from "../rules/defineConfig";
-import {dirname, resolve} from "path";
-import {globSync} from "glob";
-import {writeFile} from "fs";
-import {SubPackages} from "../rules/subPackages";
+import { dirname, resolve } from "path";
+import { rootDycPageConfigPathJs, rootDycPageConfigPathTs, runConfigurePathEffectivelyReturn } from "../cmd/dev/dev";
+import { defineConfigTypes } from "../rules/defineConfig";
+import { PageStyle } from "../rules/definePageConfig/page.style";
+import { pages } from "../rules/definePageConfig/pages";
+import { SubPackages } from "../rules/subPackages";
 
 
 export const template = `
@@ -62,6 +62,7 @@ export class ParseHelper {
                 // pages.subpackage 与 subPackages配置 路径对比 不存在
             })
 
+
             if (findPage) return
             // 判断分包组是否存在  是否只是在分包组上添加
             let justAdd = false
@@ -73,6 +74,7 @@ export class ParseHelper {
                     justAddRoot = root
                 }
             })
+            
             if (justAdd) {
                 callback(i, justAddRoot)
                 return
@@ -126,7 +128,7 @@ export class ParseHelper {
         if (!userConfig.whetherMakeUpTheConfig) return this
         return this.loopSubPage(subPages, (curPage, path) => {
             const resolvePath = resolve(dirname(resolve(path)), userConfig.whetherMakeUpTheConfigFileSuffix === 'ts' ? rootDycPageConfigPathTs : rootDycPageConfigPathJs)
-            const filePath = globSync(resolvePath, {ignore: 'node_modules/**'})
+            const filePath = globSync(resolvePath, { ignore: 'node_modules/**' })
             if (filePath[0]) return
             callback(resolvePath, template)
         })
@@ -134,10 +136,10 @@ export class ParseHelper {
 
     verifyWhetherMakeUpTheConfigPage(pages: pages[], userConfig: defineConfigTypes, callback: verifyWhetherMakeUpTheConfigSubPageCallback) {
         if (!userConfig.whetherMakeUpTheConfig) return this
-        for (let i = 0; i < pages.length; i++) {
+        for (let i = 0; i < pages?.length; i++) {
             const pageCur = pages[i]
             const path = resolve(dirname(resolve(pageCur.path)), userConfig.whetherMakeUpTheConfigFileSuffix === 'ts' ? rootDycPageConfigPathTs : rootDycPageConfigPathJs)
-            const filePath = globSync(path, {ignore: 'node_modules/**'})
+            const filePath = globSync(path, { ignore: 'node_modules/**' })
             if (filePath[0]) continue
             callback(path, template)
         }

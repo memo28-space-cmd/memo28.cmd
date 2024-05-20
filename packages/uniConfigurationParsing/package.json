@@ -13,7 +13,7 @@
     "build:cjs:watch": "tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true --watch",
     "build:es:watch": "tsc --module es6 --rootDir ./src --outDir ./dist --experimentalDecorators true --watch",
     "build": "rm -rf ./dts && pnpm build:cjs && pnpm build:es",
-    "build:watch": "pnpm build:cjs:watch && pnpm build:es:watch",
+    "build:watch": "pnpm build:cjs:watch & pnpm build:es:watch",
     "build:md": "pnpm build && api-extractor run --local --verbose",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",

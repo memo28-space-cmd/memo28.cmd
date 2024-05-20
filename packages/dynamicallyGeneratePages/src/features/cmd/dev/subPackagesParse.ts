@@ -1,9 +1,16 @@
-import {SubPackages} from "../../rules/subPackages";
-import {runConfigurePathEffectivelyReturn} from "./dev";
-import {defineConfigTypes} from "../../rules/defineConfig";
-import {getMetaTypes, ParseImpl} from "../../parsing/parseImpl";
-import {ParseHelper} from "../../parsing/parse.helper";
-import {writeFile} from "fs";
+/*
+ * @Author: @memo28.repo
+ * @Date: 2024-05-19 20:18:31
+ * @LastEditTime: 2024-05-20 09:58:35
+ * @Description: 
+ * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/cmd/dev/subPackagesParse.ts
+ */
+import { writeFile, writeFileSync } from "fs";
+import { ParseHelper } from "../../parsing/parse.helper";
+import { getMetaTypes, ParseImpl } from "../../parsing/parseImpl";
+import { defineConfigTypes } from "../../rules/defineConfig";
+import { SubPackages } from "../../rules/subPackages";
+import { runConfigurePathEffectivelyReturn } from "./dev";
 
 /**
  *
@@ -50,16 +57,28 @@ export class SubPackagesParse extends ParseHelper implements ParseImpl {
                         style: item.pagesConfig.pages.style
                     })
                 }
+            } else {
+                // 新建分包组
+                const root = item.path.split('/')[0]
+                const rootLayout: SubPackages[] = this.subPackages
+                const rootLayoutConfig: SubPackages = {
+                    root: '',
+                    pages: []
+                }
+                rootLayoutConfig.root = root
+                const path = item.path.split('/').splice(1).join('/')
+                rootLayoutConfig.pages.push({
+                    path: path,
+                    style: item.pagesConfig.pages.style
+                })
+                rootLayout.push(rootLayoutConfig)
             }
         })
     }
 
     verifyWhetherMakeUpTheConfigHandler() {
         return this.verifyWhetherMakeUpTheConfigSubPage(this.subPackages, this.userConfig, (path, template) => {
-            writeFile(path, template, 'utf-8', (err) => {
-                if (err) console.log(err?.message)
-                else console.log('创建分包页面配置文件成功 ->', path)
-            })
+            writeFileSync(path, template, { encoding: 'utf-8' })
         })
     }
 

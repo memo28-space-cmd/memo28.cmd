@@ -1,6 +1,7 @@
 import { verifyPathExistsSync } from "@memo28.cmd/error";
 import { resolve } from "path";
 import { PACKAGE_NAME } from "../../constant/package";
+import { getDebugger } from "./debugger";
 
 export interface defineConfigTypes {
     /**
@@ -92,7 +93,7 @@ export function defineConfig(opt?: Partial<defineConfigTypes>) {
         }
     }
 
-    return {
+    const config = {
         subPackagesRules,
         mainPackageRules,
         rootPagesJsonPath: resolve(rootPagesJsonPath[0]),
@@ -100,4 +101,10 @@ export function defineConfig(opt?: Partial<defineConfigTypes>) {
         whetherMakeUpTheConfigFileSuffix: opt?.whetherMakeUpTheConfigFileSuffix,
         generateClaimsRoute: opt?.generateClaimsRoute
     }
+
+    if (getDebugger()) {
+        console.log(config, 'config')
+    }
+
+    return config
 }

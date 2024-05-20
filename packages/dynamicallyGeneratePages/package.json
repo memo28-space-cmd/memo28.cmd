@@ -1,6 +1,6 @@
 {
   "name": "@memo28.cmd/dynamically-generate-pages",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "动态生成pages文件",
   "main": "./lib/index.js",
   "module": "./dist/index.js",
@@ -8,12 +8,12 @@
   "bin": "./lib/main.js",
   "scripts": {
     "test": "vitest run",
-    "build:cjs": "rm -rf ./lib && tsc --module CommonJS --rootDir ./src --outDir ./lib --experimentalDecorators true",
+    "build:cjs": "rm -rf ./lib && tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true",
     "build:es": "rm -rf ./dist &&  tsc --module esnext --rootDir ./src --outDir ./dist --experimentalDecorators true",
     "build:cjs:watch": "tsc --module commonjs --rootDir ./src --outDir ./lib --experimentalDecorators true --watch",
     "build:es:watch": "tsc --module es6 --rootDir ./src --outDir ./dist --experimentalDecorators true --watch",
     "build": "rm -rf ./dts && pnpm build:cjs && pnpm build:es",
-    "build:watch": "pnpm build:cjs:watch && pnpm build:es:watch",
+    "build:watch": "pnpm build:cjs:watch & pnpm build:es:watch",
     "build:md": "pnpm build && api-extractor run --local --verbose",
     "test:watch": "vitest",
     "test:once": "vitest run",

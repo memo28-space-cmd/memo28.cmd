@@ -1,12 +1,17 @@
-import {PageStyle} from "../../rules/definePageConfig/page.style";
-import defaultDeep from 'lodash.defaultsdeep'
-import {rootDycPageConfigPathJs, rootDycPageConfigPathTs, runConfigurePathEffectivelyReturn} from "./dev";
-import {defineConfigTypes} from "../../rules/defineConfig";
-import {resolve, dirname} from "path";
-import {writeFile} from 'fs'
-import {globSync} from "glob";
-import {ParseHelper, template} from "../../parsing/parse.helper";
-import {getMetaTypes, ParseImpl} from "../../parsing/parseImpl";
+/*
+ * @Author: @memo28.repo
+ * @Date: 2024-05-19 20:18:31
+ * @LastEditTime: 2024-05-19 21:04:27
+ * @Description: 
+ * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/cmd/dev/parsePages.ts
+ */
+import { writeFile, writeFileSync } from 'fs';
+import { ParseHelper } from "../../parsing/parse.helper";
+import { getMetaTypes, ParseImpl } from "../../parsing/parseImpl";
+import { getDebugger } from '../../rules/debugger';
+import { defineConfigTypes } from "../../rules/defineConfig";
+import { PageStyle } from "../../rules/definePageConfig/page.style";
+import { runConfigurePathEffectivelyReturn } from "./dev";
 
 
 /**
@@ -43,6 +48,10 @@ export class ParsePages extends ParseHelper implements ParseImpl {
 
     setPackageRulesParseResult(list: runConfigurePathEffectivelyReturn[]): this {
         this.dycConfigPages = list
+
+        if (getDebugger()) {
+            console.log(`解析出manifest的结果 ==>`, list)
+        }
         return this;
     }
 
@@ -68,14 +77,9 @@ export class ParsePages extends ParseHelper implements ParseImpl {
 
     verifyWhetherMakeUpTheConfigHandler() {
         return this.verifyWhetherMakeUpTheConfigPage(this.pages, this.userConfig, (path, template) => {
-            writeFile(path, template, 'utf-8', (err) => {
-                if (err) {
-                    console.log(err?.message)
-                } else {
-                    console.log('创建主包页面配置文件成功 ->', path)
-                }
+            writeFileSync(path, template, {
+                encoding: 'utf-8',
             })
-
         })
     }
 
