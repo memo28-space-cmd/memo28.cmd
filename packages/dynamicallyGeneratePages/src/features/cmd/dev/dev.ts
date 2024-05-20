@@ -5,21 +5,23 @@
  * @Description: 
  * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/cmd/dev/dev.ts
  */
-import { verifyPathExistsSync } from "@memo28.cmd/error";
-import { program } from 'commander';
-import { readFileSync, writeFile } from "fs";
-import { globSync } from "glob";
-import { dirname, resolve } from "path";
+import {verifyPathExistsSync} from "@memo28.cmd/error";
+import {program} from 'commander';
+import {readFileSync, writeFile} from "fs";
+import {globSync} from "glob";
+import {dirname, resolve} from "path";
 import * as ts from "typescript";
-import { PACKAGE_NAME } from "../../../constant/package";
-import { Combination } from "../../parsing/declarativeRouting/combination";
-import { Scheduling } from "../../parsing/scheduling";
-import { setDebugger } from "../../rules/debugger";
-import { defineConfigTypes } from "../../rules/defineConfig";
-import { definePageOptions } from "../../rules/definePageConfig/definePage";
-import { setMode } from '../../rules/mode';
-import { ParsePages } from "./parsePages";
-import { SubPackagesParse } from "./subPackagesParse";
+import {PACKAGE_NAME} from "../../../constant/package";
+import {Combination} from "../../parsing/declarativeRouting/combination";
+import {Scheduling} from "../../parsing/scheduling";
+import {setDebugger} from "../../rules/debugger";
+import {defineConfigTypes} from "../../rules/defineConfig";
+import {definePageOptions} from "../../rules/definePageConfig/definePage";
+import {setMode} from '../../rules/mode';
+import {ParsePages} from "./parsePages";
+import {SubPackagesParse} from "./subPackagesParse";
+import {SubPackages} from "../../rules/subPackages";
+import {pages} from "../../rules/definePageConfig/pages";
 
 export const rootDycConfigPathTs = resolve('./dyc.config.ts')
 
@@ -40,7 +42,7 @@ export const rootDycPageConfigPathTs = ('./dycPage.config.ts')
  */
 function configurePathEffectively(pathGroup: string[]): string[] {
     return pathGroup.filter(i => {
-        const rootDycPageConfigPath = globSync([resolve(dirname(i), rootDycPageConfigPathTs), resolve(dirname(i), rootDycPageConfigPathJs)], { ignore: "node_modules/**" })
+        const rootDycPageConfigPath = globSync([resolve(dirname(i), rootDycPageConfigPathTs), resolve(dirname(i), rootDycPageConfigPathJs)], {ignore: "node_modules/**"})
         return rootDycPageConfigPath.length
     })
 }
@@ -87,13 +89,31 @@ export function dev() {
             }
 
 
+            // 如果主包配置中存在文件夹结构不存在的页面 则更新manifest配置
+            pagesJsonResult.pages = pagesJsonResult.pages.filter((item: pages) => {
+                const p = `${item.path}.vue`
+                return config.mainPackageRules.includes(p)
+            })
+
             // 处理主包逻辑
             const mainScheduling = new Scheduling(new ParsePages(pagesJsonResult.pages, config))
                 .identifyValidRoutes(() =>
                     configurePathEffectively(config.mainPackageRules)
                 ).triggerParsePagesJson()
 
-
+            /**
+             * 当manifest分包中存在文件夹结构并不存在的页面时 会同步删除manifest中的分包配置
+             */
+            pagesJsonResult.subPackages = pagesJsonResult.subPackages.map((item: SubPackages) => {
+                const pages = item.pages.filter(i => {
+                    const path = `${item.root}/${i.path}.vue`
+                    return config.subPackagesRules.includes(path)
+                })
+                return {
+                    ...item,
+                    pages
+                }
+            })
 
             // 处理分包逻辑
             const subScheduling = new Scheduling(new SubPackagesParse(pagesJsonResult.subPackages || [], config))

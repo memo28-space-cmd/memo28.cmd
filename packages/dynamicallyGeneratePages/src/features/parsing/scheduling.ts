@@ -1,11 +1,11 @@
-import { readFileSync } from 'fs';
-import { globSync } from 'glob';
-import { dirname, parse, resolve } from "path";
+import {readFileSync} from 'fs';
+import {globSync} from 'glob';
+import {dirname, parse, resolve} from "path";
 import * as ts from 'typescript';
-import { rootDycPageConfigPathJs, rootDycPageConfigPathTs } from "../cmd/dev/dev";
-import { definePageOptions } from "../rules/definePageConfig/definePage";
-import { DeclarativeRouting } from "./declarativeRouting";
-import { ParseImpl } from "./parseImpl";
+import {rootDycPageConfigPathJs, rootDycPageConfigPathTs} from "../cmd/dev/dev";
+import {definePageOptions} from "../rules/definePageConfig/definePage";
+import {DeclarativeRouting} from "./declarativeRouting";
+import {ParseImpl} from "./parseImpl";
 
 
 export type runConfigurePathEffectivelyReturn = { path: string, pagesConfig: definePageOptions }
@@ -20,7 +20,7 @@ export type runConfigurePathEffectivelyReturn = { path: string, pagesConfig: def
 
 function runConfigurePathEffectively(pathGroup: string[]): runConfigurePathEffectivelyReturn[] {
     return pathGroup.map(i => {
-        const rootDycPageConfigPath = globSync([resolve(dirname(i), rootDycPageConfigPathTs), resolve(dirname(i), rootDycPageConfigPathJs)], { ignore: "node_modules/**" })
+        const rootDycPageConfigPath = globSync([resolve(dirname(i), rootDycPageConfigPathTs), resolve(dirname(i), rootDycPageConfigPathJs)], {ignore: "node_modules/**"})
 
         const fileContent = readFileSync(rootDycPageConfigPath[0], 'utf-8')
 
@@ -47,11 +47,11 @@ function runConfigurePathEffectively(pathGroup: string[]): runConfigurePathEffec
 export class Scheduling {
 
     /**
-     * 
+     *
      * 验证有效路由的路径
-     * 
+     *
      * @public
-     * 
+     *
      */
     private identifyValidRoutesList: string[] = []
 
@@ -75,7 +75,6 @@ export class Scheduling {
         this.identifyValidRoutesListCb = fn
         this.identifyValidRoutesList = fn()
         this.runConfigurePathEffectively()
-
         return this
     }
 

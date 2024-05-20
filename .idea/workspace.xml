@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="423c2bab-c33a-4cc9-b1a4-b97af3d1402c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/dev.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/dev.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/parsePages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/parsePages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/subPackagesParse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/subPackagesParse.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/parsing/parse.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/parsing/parse.helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/parsing/scheduling.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/parsing/scheduling.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,24 +37,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "pnpm",
-    "npm.cmdRepo > build.executor": "Run",
-    "npm.cmdRepo > build:watch.executor": "Run",
-    "npm.cmdRepo > installAll.executor": "Run",
-    "settings.editor.selected.configurable": "preferences.startup.tasks",
-    "ts.external.directory.path": "/Users/devops/Desktop/monorepo/cmdRepo/packages/dynamicallyGeneratePages/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/qiushijie/Desktop/monorepo/memo28.cmd&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;npm.cmdRepo &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.cmdRepo &gt; build:watch.executor&quot;: &quot;Run&quot;,
+    &quot;npm.cmdRepo &gt; installAll.executor&quot;: &quot;Run&quot;,
+    &quot;npm.installAll.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.startup.tasks&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/qiushijie/Desktop/monorepo/memo28.cmd/packages/dynamicallyGeneratePages/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.cmdRepo &gt; build:watch">
     <configuration name="cmdRepo &gt; build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -88,6 +95,13 @@
       <item itemvalue="npm.cmdRepo &gt; build:watch" />
     </list>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-2e7d6887c066-JavaScript-WS-241.15989.47" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -100,6 +114,8 @@
       <workItem from="1703477898558" duration="175000" />
       <workItem from="1706954381620" duration="37000" />
       <workItem from="1707275542112" duration="2472000" />
+      <workItem from="1716212292964" duration="74000" />
+      <workItem from="1716212436774" duration="2424000" />
     </task>
     <servers />
   </component>

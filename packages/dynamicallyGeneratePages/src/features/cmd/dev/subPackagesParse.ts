@@ -5,12 +5,12 @@
  * @Description: 
  * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/cmd/dev/subPackagesParse.ts
  */
-import { writeFile, writeFileSync } from "fs";
-import { ParseHelper } from "../../parsing/parse.helper";
-import { getMetaTypes, ParseImpl } from "../../parsing/parseImpl";
-import { defineConfigTypes } from "../../rules/defineConfig";
-import { SubPackages } from "../../rules/subPackages";
-import { runConfigurePathEffectivelyReturn } from "./dev";
+import {writeFile, writeFileSync} from "fs";
+import {ParseHelper} from "../../parsing/parse.helper";
+import {getMetaTypes, ParseImpl} from "../../parsing/parseImpl";
+import {defineConfigTypes} from "../../rules/defineConfig";
+import {SubPackages} from "../../rules/subPackages";
+import {runConfigurePathEffectivelyReturn} from "./dev";
 
 /**
  *
@@ -78,7 +78,7 @@ export class SubPackagesParse extends ParseHelper implements ParseImpl {
 
     verifyWhetherMakeUpTheConfigHandler() {
         return this.verifyWhetherMakeUpTheConfigSubPage(this.subPackages, this.userConfig, (path, template) => {
-            writeFileSync(path, template, { encoding: 'utf-8' })
+            writeFileSync(path, template, {encoding: 'utf-8'})
         })
     }
 

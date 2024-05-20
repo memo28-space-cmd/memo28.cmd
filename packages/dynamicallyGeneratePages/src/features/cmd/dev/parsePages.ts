@@ -49,9 +49,6 @@ export class ParsePages extends ParseHelper implements ParseImpl {
     setPackageRulesParseResult(list: runConfigurePathEffectivelyReturn[]): this {
         this.dycConfigPages = list
 
-        if (getDebugger()) {
-            console.log(`解析出manifest的结果 ==>`, list)
-        }
         return this;
     }
 
