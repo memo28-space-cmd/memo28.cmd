@@ -1,6 +1,6 @@
 {
   "name": "@memo28.cmd/dynamically-generate-pages",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "动态生成pages文件",
   "main": "./lib/index.js",
   "module": "./dist/index.js",

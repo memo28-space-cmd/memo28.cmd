@@ -1,5 +1,11 @@
 # @memo28.cmd/dynamically-generate-pages
 
+## 0.0.6
+
+### Patch Changes
+
+- eaa82ca1c142b806cfcc4418c63da83e23906d7f: 新增分包和主包判断 manifest 配置查找项目结构查找，找不到则删除配置
+
 ## 0.0.5
 
 ### Patch Changes

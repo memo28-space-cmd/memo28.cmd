@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="423c2bab-c33a-4cc9-b1a4-b97af3d1402c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/dev.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/dev.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/parsePages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/parsePages.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/subPackagesParse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/cmd/dev/subPackagesParse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/parsing/parse.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/parsing/parse.helper.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/parsing/scheduling.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dynamicallyGeneratePages/src/features/parsing/scheduling.ts" afterDir="false" />
-    </list>
+    <list default="true" id="423c2bab-c33a-4cc9-b1a4-b97af3d1402c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +108,7 @@
       <workItem from="1706954381620" duration="37000" />
       <workItem from="1707275542112" duration="2472000" />
       <workItem from="1716212292964" duration="74000" />
-      <workItem from="1716212436774" duration="2424000" />
+      <workItem from="1716212436774" duration="2749000" />
     </task>
     <servers />
   </component>
