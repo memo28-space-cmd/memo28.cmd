@@ -1,4 +1,11 @@
-import {ParseImpl} from "../parseImpl";
+/*
+ * @Author: @memo28.repo
+ * @Date: 2024-05-19 20:18:31
+ * @LastEditTime: 2024-08-30 10:32:41
+ * @Description: 
+ * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/parsing/declarativeRouting/index.ts
+ */
+import { ParseImpl } from "../parseImpl";
 
 /**
  *
@@ -19,14 +26,22 @@ export class DeclarativeRouting {
 
         let content = ''
 
+        this.parse.getConfig().isCli
+
         this.parse.getPackageRulesParseResult().map(i => {
-            const path = i.path.replace(/\/([a-z]|[A-Z])/g, (match, p1) => `_${p1.toUpperCase()}`).replace(/_([a-z]|[A-Z])/g, (match, p1) => `_${p1.toUpperCase()}`);
+            let path = i.path.replace(/\/([a-z]|[A-Z])/g, (match, p1) => `_${p1.toUpperCase()}`).replace(/_([a-z]|[A-Z])/g, (match, p1) => `_${p1.toUpperCase()}`);
+
+            if (this.parse.getConfig().isCli) {
+                path = path.replace(/src_/, '')
+            }
 
             const name = `${path}${this.parse.getMeta().isMainPackage ? '_With_Main' : '_With_SubPackage'}`
 
 
-            const value =  `new SimpleRouteJump("/${i.path}")${this.parse.getMeta().isMainPackage ? '.setMethod("reLaunch")' : ''}`
 
+            const jumpPath = this.parse.getConfig().isCli ? i.path.replace(/src\//, '') : i.path
+
+            const value = `new SimpleRouteJump("/${jumpPath}")${this.parse.getMeta().isMainPackage ? '.setMethod("reLaunch")' : ''}`
 
             content += `
             \n

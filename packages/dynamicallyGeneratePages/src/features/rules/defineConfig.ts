@@ -5,6 +5,12 @@ import { getDebugger } from "./debugger";
 
 export interface defineConfigTypes {
     /**
+     * 判断是否是cli模式创建的项目
+     * 
+     * 如果是则所有路径应该剔除掉 src/之前的字符串
+     */
+    isCli: boolean
+    /**
      *
      * 定义分包规则
      *
@@ -94,6 +100,7 @@ export function defineConfig(opt?: Partial<defineConfigTypes>) {
     }
 
     const config = {
+        isCli: opt?.isCli,
         subPackagesRules,
         mainPackageRules,
         rootPagesJsonPath: resolve(rootPagesJsonPath[0]),

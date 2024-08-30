@@ -1,7 +1,7 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2024-05-19 20:18:31
- * @LastEditTime: 2024-05-19 21:04:27
+ * @LastEditTime: 2024-08-30 09:49:59
  * @Description: 
  * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/cmd/dev/parsePages.ts
  */
@@ -38,8 +38,8 @@ export class ParsePages extends ParseHelper implements ParseImpl {
     constructor(private pages: {
         path: string,
         style?: Partial<PageStyle>
-    }[], private userConfig: defineConfigTypes) {
-        super()
+    }[], private config: defineConfigTypes) {
+        super(config)
     }
 
     getConfig(): defineConfigTypes {
@@ -66,7 +66,7 @@ export class ParsePages extends ParseHelper implements ParseImpl {
     increasePagesHandler() {
         return this.increasePages(this.getPackageRulesParseResult(), this.pages, (item) => {
             this.pages.push({
-                path: item.path,
+                path: this.modifyRoutingPath(item.path),
                 style: item.pagesConfig.pages.style
             })
         })

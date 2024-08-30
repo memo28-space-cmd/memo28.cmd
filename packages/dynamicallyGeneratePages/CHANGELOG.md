@@ -1,5 +1,11 @@
 # @memo28.cmd/dynamically-generate-pages
 
+## 0.0.7
+
+### Patch Changes
+
+- 新增对 hbuilder cli 模式下的路由生成和匹配
+
 ## 0.0.6
 
 ### Patch Changes

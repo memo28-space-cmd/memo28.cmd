@@ -1,16 +1,23 @@
 /*
  * @Author: @memo28.repo
  * @Date: 2024-05-19 20:18:31
- * @LastEditTime: 2024-05-20 09:58:35
+ * @LastEditTime: 2024-08-30 10:03:08
  * @Description: 
  * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/cmd/dev/subPackagesParse.ts
  */
-import {writeFile, writeFileSync} from "fs";
-import {ParseHelper} from "../../parsing/parse.helper";
-import {getMetaTypes, ParseImpl} from "../../parsing/parseImpl";
-import {defineConfigTypes} from "../../rules/defineConfig";
-import {SubPackages} from "../../rules/subPackages";
-import {runConfigurePathEffectivelyReturn} from "./dev";
+/*
+ * @Author: @memo28.repo
+ * @Date: 2024-05-19 20:18:31
+ * @LastEditTime: 2024-08-30 09:41:44
+ * @Description: 
+ * @FilePath: /memo28.cmd/packages/dynamicallyGeneratePages/src/features/cmd/dev/subPackagesParse.ts
+ */
+import { writeFile, writeFileSync } from "fs";
+import { ParseHelper } from "../../parsing/parse.helper";
+import { getMetaTypes, ParseImpl } from "../../parsing/parseImpl";
+import { defineConfigTypes } from "../../rules/defineConfig";
+import { SubPackages } from "../../rules/subPackages";
+import { runConfigurePathEffectivelyReturn } from "./dev";
 
 /**
  *
@@ -26,8 +33,8 @@ export class SubPackagesParse extends ParseHelper implements ParseImpl {
 
     private subPackagesRulesParseResult: runConfigurePathEffectivelyReturn[] = []
 
-    constructor(private subPackages: SubPackages[], private userConfig: defineConfigTypes) {
-        super()
+    constructor(private subPackages: SubPackages[], private config: defineConfigTypes) {
+        super(config)
     }
 
 
@@ -44,7 +51,11 @@ export class SubPackagesParse extends ParseHelper implements ParseImpl {
         return this.subPackagesRulesParseResult;
     }
 
+
+
+
     increasePagesHandler() {
+
         return this.increaseSubPages(this.getPackageRulesParseResult(), this.subPackages, (item: runConfigurePathEffectivelyReturn, root) => {
             if (root) {
                 for (let i = 0; i < this.subPackages.length; i++) {
@@ -78,7 +89,7 @@ export class SubPackagesParse extends ParseHelper implements ParseImpl {
 
     verifyWhetherMakeUpTheConfigHandler() {
         return this.verifyWhetherMakeUpTheConfigSubPage(this.subPackages, this.userConfig, (path, template) => {
-            writeFileSync(path, template, {encoding: 'utf-8'})
+            writeFileSync(path, template, { encoding: 'utf-8' })
         })
     }
 

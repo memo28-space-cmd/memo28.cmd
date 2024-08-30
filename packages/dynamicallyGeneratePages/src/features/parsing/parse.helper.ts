@@ -1,12 +1,12 @@
-import {writeFile} from "fs";
-import {globSync} from "glob";
+import { writeFile } from "fs";
+import { globSync } from "glob";
 import defaultDeep from "lodash.defaultsdeep";
-import {dirname, resolve} from "path";
-import {rootDycPageConfigPathJs, rootDycPageConfigPathTs, runConfigurePathEffectivelyReturn} from "../cmd/dev/dev";
-import {defineConfigTypes} from "../rules/defineConfig";
-import {PageStyle} from "../rules/definePageConfig/page.style";
-import {pages} from "../rules/definePageConfig/pages";
-import {SubPackages} from "../rules/subPackages";
+import { dirname, resolve } from "path";
+import { rootDycPageConfigPathJs, rootDycPageConfigPathTs, runConfigurePathEffectivelyReturn } from "../cmd/dev/dev";
+import { defineConfigTypes } from "../rules/defineConfig";
+import { PageStyle } from "../rules/definePageConfig/page.style";
+import { pages } from "../rules/definePageConfig/pages";
+import { SubPackages } from "../rules/subPackages";
 
 
 export const template = `
@@ -25,6 +25,15 @@ export type verifyWhetherMakeUpTheConfigSubPageCallback = (path: string, templat
 
 export class ParseHelper {
 
+    // @ts-ignore
+    protected userConfig: defineConfigTypes = null
+
+    constructor(config: defineConfigTypes) {
+        this.userConfig = config
+    }
+
+
+
     /**
      *
      * 循环 mainPages 配置 与 已有 pages 配置进行对比 当 pages缺少时 触发回调
@@ -42,6 +51,14 @@ export class ParseHelper {
         return this
     }
 
+
+    modifyRoutingPath(path: string): string {
+        if (this.userConfig.isCli) {
+            return path?.replace(/src\//, '') || ''
+        }
+        return path
+    }
+
     /**
      *
      * 循环 subPackage 配置 与 pages.json 中 subpackage 少时 触发回调
@@ -53,12 +70,18 @@ export class ParseHelper {
      */
     increaseSubPages(dycConfigPages: runConfigurePathEffectivelyReturn[], subPackages: SubPackages[], callback: (item: runConfigurePathEffectivelyReturn, root?: string) => void) {
         dycConfigPages.forEach(i => {
+            /**
+             * i 为读取出来的分包配置
+             * 
+             * subPackages 为 pages.json 中的分包配置
+             */
             let findPage = false
+
             this.loopSubPage(subPackages, (curPage, path) => {
                 // 是否找到相关页面 如果没有找到的话 触发回调
                 // pages.subpackage 与 subPackages配置 路径对比 存在直接退出
                 if (findPage) return
-                findPage = path === i.path;
+                findPage = path === this.modifyRoutingPath(i.path);
                 // pages.subpackage 与 subPackages配置 路径对比 不存在
             })
 
@@ -69,18 +92,23 @@ export class ParseHelper {
             let justAddRoot = ''
             this.loopSubPage(subPackages, (curPage, path, root) => {
                 if (justAdd) return
-                if (i.path.includes(root)) {
+                if (i.path.indexOf(root) !== -1) {
                     justAdd = true
                     justAddRoot = root
                 }
             })
-
             if (justAdd) {
-                callback(i, justAddRoot)
+                callback({
+                    ...i,
+                    path: this.modifyRoutingPath(i.path)
+                }, justAddRoot)
                 return
             }
             // 如果分包组不存在 则走新建分包组逻辑
-            callback(i)
+            callback({
+                ...i,
+                path: this.modifyRoutingPath(i.path)
+            })
         })
         return this
     }
@@ -127,8 +155,9 @@ export class ParseHelper {
     verifyWhetherMakeUpTheConfigSubPage(subPages: SubPackages[], userConfig: defineConfigTypes, callback: verifyWhetherMakeUpTheConfigSubPageCallback): this {
         if (!userConfig.whetherMakeUpTheConfig) return this
         return this.loopSubPage(subPages, (curPage, path) => {
-            const resolvePath = resolve(dirname(resolve(path)), userConfig.whetherMakeUpTheConfigFileSuffix === 'ts' ? rootDycPageConfigPathTs : rootDycPageConfigPathJs)
-            const filePath = globSync(resolvePath, {ignore: 'node_modules/**'})
+            const p = userConfig.isCli ? resolve("src/", path) : resolve(path)
+            const resolvePath = resolve(dirname(p), userConfig.whetherMakeUpTheConfigFileSuffix === 'ts' ? rootDycPageConfigPathTs : rootDycPageConfigPathJs)
+            const filePath = globSync(resolvePath, { ignore: 'node_modules/**' })
             if (filePath[0]) return
             callback(resolvePath, template)
         })
@@ -139,7 +168,7 @@ export class ParseHelper {
         for (let i = 0; i < pages?.length; i++) {
             const pageCur = pages[i]
             const path = resolve(dirname(resolve(pageCur.path)), userConfig.whetherMakeUpTheConfigFileSuffix === 'ts' ? rootDycPageConfigPathTs : rootDycPageConfigPathJs)
-            const filePath = globSync(path, {ignore: 'node_modules/**'})
+            const filePath = globSync(path, { ignore: 'node_modules/**' })
             if (filePath[0]) continue
             callback(path, template)
         }
